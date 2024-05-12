@@ -2,7 +2,7 @@ name: Draftbash Users API Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: "main"
 
 jobs:
 
