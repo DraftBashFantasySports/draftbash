@@ -20,8 +20,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t sfeddes/draftbash/users-api:latest .
+      run: docker build -t sfeddes/draftbash:users-api .
       
     - name: Push Docker image
       run: |
-        docker push sfeddes/draftbash/users-api:latest
+        docker push sfeddes/draftbash:users-api
