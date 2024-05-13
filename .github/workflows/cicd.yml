@@ -1,3 +1,5 @@
+name: CI/CD Pipeline
+
 on:
   push:
     branches:
@@ -10,6 +12,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker
+          sudo usermod -aG docker $USER  # Add the current user to the docker group
 
       - name: Login to Dockerhub
         uses: docker/login-action@v1
@@ -33,5 +41,5 @@ jobs:
           script: |
             docker stop app || true
             docker rm app || true
-            docker pull sfeddes/draftbash/app:latest
-            docker run -d --name app -p 80:3000 sfeddes/draftbash/app:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+            docker run -d --name app -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
