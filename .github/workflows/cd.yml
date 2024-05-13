@@ -37,6 +37,6 @@ jobs:
       run: |
         echo "$EC2_SSH_KEY" > key.pem
         chmod 600 key.pem
-        ssh -i key.pem ubuntu@ec2-3-144-169-40.us-east-2.compute.amazonaws.com 'docker run -p 80:3000 sfeddes/draftbash:users-api'
+        ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@ec2-3-144-169-40.us-east-2.compute.amazonaws.com 'docker run -p 80:3000 sfeddes/draftbash:users-api'
         env:
             EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
