@@ -27,11 +27,11 @@ jobs:
       - name: Deploy to EC2 Instance
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_DNS}}
+          host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             docker stop app || true
             docker rm app || true
             docker pull sfeddes/draftbash/app:latest
-            docker run -d --name app -p 80:3000 sfeddes/draftbash/app:latest
+            ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }} 'docker run -d --name app -p 80:3000 sfeddes/draftbash/app:latest'
