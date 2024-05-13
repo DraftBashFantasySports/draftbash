@@ -17,8 +17,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker
-          sudo usermod -aG docker $USER  # Add the current user to the docker group
-          newgrp docker  # Activate the changes to the group membership
 
       - name: Login to Dockerhub
         uses: docker/login-action@v1
@@ -40,7 +38,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker stop app || true
-            docker rm app || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
-            docker run -d --name app -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+            sudo docker stop app || true
+            sudo docker rm app || true
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+            sudo docker run -d --name app -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
