@@ -9,12 +9,11 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:5.7
+    image: postgres:latest   # Changed from mysql:5.7 to postgres:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_DATABASE: draftbash
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
+      POSTGRES_DB: draftbash  # Changed from MYSQL_DATABASE to POSTGRES_DB
+      POSTGRES_USER: postgres # Changed from MYSQL_USER to POSTGRES_USER
+      POSTGRES_PASSWORD: postgres # Changed from MYSQL_PASSWORD to POSTGRES_PASSWORD
     ports:
-      - "3306:3306"
+      - "5432:5432"            # Changed from 3306 to 5432 for PostgreSQL
