@@ -35,4 +35,4 @@ jobs:
 
     - name: Run Docker container
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@3.144.169.40 'docker run -p 80:3000 sfeddes/draftbash:users-api'
+        ssh -i ${{ secrets.EC2_SSH_KEY }} ubuntu@ec2-3-144-169-40.us-east-2.compute.amazonaws.com 'docker run -p 80:3000 sfeddes/draftbash:users-api'
