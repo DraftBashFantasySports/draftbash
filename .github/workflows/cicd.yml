@@ -18,6 +18,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker
           sudo usermod -aG docker $USER  # Add the current user to the docker group
+          newgrp docker  # Activate the changes to the group membership
 
       - name: Login to Dockerhub
         uses: docker/login-action@v1
