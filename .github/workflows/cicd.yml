@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-test-deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -34,4 +34,4 @@ jobs:
             docker stop app || true
             docker rm app || true
             docker pull sfeddes/draftbash/app:latest
-            ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST_DNS }} 'docker run -d --name app -p 80:3000 sfeddes/draftbash/app:latest'
+            docker run -d --name app -p 80:3000 sfeddes/draftbash/app:latest
