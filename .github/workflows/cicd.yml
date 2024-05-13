@@ -22,13 +22,13 @@ jobs:
         with:
           context: .
           push: true
-          tags: draftbash/app:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
 
       - name: Deploy to EC2 Instance
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
+          username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             docker stop app || true
