@@ -33,6 +33,10 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
 
-    - name: Run Docker container
+    - name: Run Docker container on EC2 instance
       run: |
-        ssh -i ${{ secrets.EC2_SSH_KEY }} ubuntu@ec2-3-144-169-40.us-east-2.compute.amazonaws.com 'docker run -p 80:3000 sfeddes/draftbash:users-api'
+        echo "$EC2_SSH_KEY" > key.pem
+        chmod 600 key.pem
+        ssh -i key.pem ubuntu@ec2-3-144-169-40.us-east-2.compute.amazonaws.com 'docker run -p 80:3000 sfeddes/draftbash:users-api'
+        env:
+            EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
