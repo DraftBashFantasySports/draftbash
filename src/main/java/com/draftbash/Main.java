@@ -15,8 +15,6 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    String test = "11111111111111111111111111111111111111111";
-
     @GetMapping("/")
     public String root() {
         return "Draftbash Users API";
