@@ -17,7 +17,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '21'
-
+        distribution: 'adopt'
+      
     - name: Grant execute permission to gradlew
       run: chmod +x ./gradlew
 
@@ -40,7 +41,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '21'
-
+        distribution: 'adopt'
+      
     - name: Grant execute permission to gradlew
       run: chmod +x ./gradlew
 
