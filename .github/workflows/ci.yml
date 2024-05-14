@@ -5,38 +5,13 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  lint:
-    name: Linting Checkstyle
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Setup JDK
-      uses: actions/setup-java@v2
-      with:
-        java-version: '21'
-
-    - name: Grant execute permission to gradlew
-      run: chmod +x ./gradlew
-
-    - name: Run Checkstyle
-      run: ./gradlew checkstyleMain checkstyleTest
-
-  build-and-test:
+  build-lint-test:
     name: Build and Test
     runs-on: ubuntu-latest
-    needs: lint
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Setup JDK
-      uses: actions/setup-java@v2
-      with:
-        java-version: '21'
 
     - name: Grant execute permission to gradlew
       run: chmod +x ./gradlew
@@ -44,5 +19,6 @@ jobs:
     - name: Build Docker image
       run: docker build -t image-name .
     
-    - name: Run Tests
-      run: docker run image-name ./gradlew test
+    - name: Run Linter in Docker container
+      run: |
+        docker run image-name ./gradlew checkstyleMain checkstyleTest
