@@ -34,6 +34,9 @@ public class AuthenticateUserService {
         UserDTO user = optionalUser.orElseThrow(
             () -> new IllegalArgumentException("Invalid username or password"));
 
+        if (!user.password().equals(password)) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
         return authenticationTokenService.generateToken(user);
     }
 }

@@ -96,12 +96,11 @@ public class CreateUserService {
 
         if (!errorMap.values().stream().allMatch(error -> error == null)) {
             throw new UserValidationException(errorMap);
-        } else {
-            final String HASHED_PASSWORD = passwordService.encode(PASSWORD);
-            UserDTO userWithHashedPassword = new UserDTO(USERNAME, EMAIL, HASHED_PASSWORD);
-            userRepository.createUser(userWithHashedPassword);
-            
-            return authenticationTokenService.generateToken(userWithHashedPassword);
         }
+        final String HASHED_PASSWORD = passwordService.encode(PASSWORD);
+        final UserDTO USER_WITH_HASHED_PASSWORD = new UserDTO(USERNAME, EMAIL, HASHED_PASSWORD);
+        userRepository.createUser(USER_WITH_HASHED_PASSWORD);
+        
+        return authenticationTokenService.generateToken(USER_WITH_HASHED_PASSWORD);
     }
 }
