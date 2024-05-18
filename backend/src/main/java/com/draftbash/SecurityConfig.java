@@ -1,3 +1,4 @@
+package com.draftbash;
 
 
 import org.springframework.context.annotation.Bean;

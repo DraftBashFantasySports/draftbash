@@ -1,6 +1,6 @@
 package com.draftbash.features.users.services;
 
-import com.draftbash.features.users.interfaces.IPasswordService;
+import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
  * Service for password related operations.
  */
 @Service
-public class PasswordService implements IPasswordService {
+public class PasswordEncryptionService implements IPasswordEncryptionService {
 
     private final BCryptPasswordEncoder bcryptPasswordEncoder;
 
-    public PasswordService() {
+    public PasswordEncryptionService() {
         this.bcryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 

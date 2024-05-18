@@ -4,6 +4,10 @@ spring:
     active: dev  # Set the default profile to 'dev'
   main:
     web-application-type: servlet
+    
+logging:
+  level:
+    root: INFO
 
 ---
 

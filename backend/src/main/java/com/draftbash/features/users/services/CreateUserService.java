@@ -1,59 +1,106 @@
 package com.draftbash.features.users.services;
 
 import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
-import com.draftbash.features.users.interfaces.IPasswordService;
+import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
 import com.draftbash.features.users.interfaces.IUserRepository;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 
 /**
  * This class is responsible for creating a new user.
 
  * @param passwordService The password service.
- * @param appUsersRepository The repository for app users.
+ * @param userRepository The repository for app users.
  * @param authenticationTokenService The authentication token service.
  */
 @Service
 public class CreateUserService {
 
-    private final IPasswordService passwordService;
+    private final IPasswordEncryptionService passwordService;
     private final IAuthenticationTokenService authenticationTokenService;
-    private final IUserRepository appUsersRepository;
+    private final IUserRepository userRepository;
 
     /**
      * Constructor for the CreateAppUserService.
      */
-    public CreateUserService(IPasswordService passwordService,
+    public CreateUserService(IPasswordEncryptionService passwordService,
                                  IUserRepository appUsersRepository,
                                  IAuthenticationTokenService authenticationTokenService) {
         this.passwordService = passwordService;
-        this.appUsersRepository = appUsersRepository;
+        this.userRepository = appUsersRepository;
         this.authenticationTokenService = authenticationTokenService;
     }
 
     /**
      * Creates a new app user.
 
-     * @param appUser The app user to create.
+     * @param user The app user to create.
      * @return The authentication token for the new user.
      */
-    public String createAppUser(UserDTO appUser) {
+    public String createUser(UserDTO user) {
+
+        final String USERNAME = user.username();
+        final String EMAIL = user.email();
+        final String PASSWORD = user.password();
+
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("username", null);
+        errorMap.put("email", null);
+        errorMap.put("password", null);
+
+        // Check if the username, email, and password are provided
+        if (USERNAME == null || USERNAME.isEmpty()) {
+            errorMap.put("username", "Username is required");
+        }
+        if (EMAIL == null || EMAIL.isEmpty()) {
+            errorMap.put("email", "Email is required");
+        }
+        if (PASSWORD == null || PASSWORD.isEmpty()) {
+            errorMap.put("password", "Password is required");
+        }
+
+        if (USERNAME != null && USERNAME.length() < 3) {
+            errorMap.put("username", "Username must be at least 3 characters long");
+        } else if (USERNAME != null && USERNAME.length() > 25) {
+            errorMap.put("username", "Username must be at most 25 characters long");
+        } else if (USERNAME != null && !USERNAME.matches("^[a-zA-Z0-9]*$")) {
+            errorMap.put("username", "Username must contain only letters and numbers");
+        }
+
+        if (PASSWORD != null && PASSWORD.length() < 8) {
+            errorMap.put("password", "Password must be at least 8 characters long");
+        } else if (PASSWORD != null && PASSWORD.length() > 50) {
+            errorMap.put("password", "Password must be at most 25 characters long");
+        } else if (PASSWORD != null && !PASSWORD.matches(".*[A-Z].*")) {
+            errorMap.put("password", "Password must contain at least 1 uppercase letter");
+        } else if (PASSWORD != null && !PASSWORD.matches(".*[a-z].*")) {
+            errorMap.put("password", "Password must contain at least 1 lowercase letter");
+        } else if (PASSWORD != null && !PASSWORD.matches(".*[0-9].*")) {
+            errorMap.put("password", "Password must contain at least 1 number");
+        } else if (PASSWORD != null && !PASSWORD.matches(".*[!@#$%^&*].*")) {
+            errorMap.put("password", "Password must contain at least 1 special character");
+        }
+
         // Check if the username is already taken
-        String username = appUser.username();
-        if (appUsersRepository.getUserByUsername(appUser.username()) != null) {
-            throw new IllegalArgumentException("Username already exists");
+        if (userRepository.getUserByUsername(USERNAME).isPresent()) {
+            errorMap.put("username", String.format("Username '%s' already exists", USERNAME));
         }
 
         // Check if the email is already taken
-        String email = appUser.email();
-        if (appUsersRepository.getUserByEmail(appUser.email()) != null) {
-            throw new IllegalArgumentException("Email already exists");
+        if (userRepository.getUserByEmail(user.email()).isPresent()) {
+            errorMap.put("email", String.format("Email '%s' already exists", EMAIL));
         }
 
-        String hashedPassword = passwordService.encode(appUser.password());
-        UserDTO appUserWithHashedPassword = new UserDTO(username, email, hashedPassword);
-        appUsersRepository.createUser(appUserWithHashedPassword);
+        if (!errorMap.values().stream().allMatch(error -> error == null)) {
+            throw new UserValidationException(errorMap);
+        }
+        final String HASHED_PASSWORD = passwordService.encode(PASSWORD);
+        final UserDTO USER_WITH_HASHED_PASSWORD = new UserDTO(USERNAME, EMAIL, HASHED_PASSWORD);
+        userRepository.createUser(USER_WITH_HASHED_PASSWORD);
         
-        return authenticationTokenService.generateToken(appUserWithHashedPassword);
+        return authenticationTokenService.generateToken(USER_WITH_HASHED_PASSWORD);
     }
 }
