@@ -22,13 +22,13 @@ jobs:
         distribution: 'adopt'
 
     - name: Grant execute permission to gradlew
-      run: chmod +x backend/gradlew
+      run: cd backend && chmod +x gradlew
 
     - name: Clean build
-      run: backend/gradlew clean build
+      run: cd backend && ./gradlew clean build
 
     - name: Run Checkstyle
-      run: backend/gradlew checkstyleMain checkstyleTest
+      run: cd backend && ./gradlew checkstyleMain checkstyleTest
 
     - name: Run Tests
-      run: backend/gradlew test
+      run: cd backend && ./gradlew test
