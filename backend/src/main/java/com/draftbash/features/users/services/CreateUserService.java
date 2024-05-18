@@ -85,12 +85,12 @@ public class CreateUserService {
         }
 
         // Check if the username is already taken
-        if (userRepository.getUserByUsername(USERNAME) != null) {
+        if (userRepository.getUserByUsername(USERNAME).isPresent()) {
             errorMap.put("username", String.format("Username '%s' already exists", USERNAME));
         }
 
         // Check if the email is already taken
-        if (userRepository.getUserByEmail(user.email()) != null) {
+        if (userRepository.getUserByEmail(user.email()).isPresent()) {
             errorMap.put("email", String.format("Email '%s' already exists", EMAIL));
         }
 

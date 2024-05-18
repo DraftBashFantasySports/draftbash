@@ -3,6 +3,7 @@ package com.draftbash.features.users.services;
 import com.draftbash.features.users.dtos.UserDTO;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IUserRepository;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,12 +30,10 @@ public class AuthenticateUserService {
      */
     public String authenticate(String username, String password) {
         
-        UserDTO user = userRepository.getUserByUsername(username);
+        Optional<UserDTO> optionalUser = userRepository.getUserByUsername(username);
+        UserDTO user = optionalUser.orElseThrow(
+            () -> new IllegalArgumentException("Invalid username or password"));
 
-        if (user == null || !user.password().equals(password)) {
-            throw new IllegalArgumentException("Invalid username or password");
-        } else {
-            return authenticationTokenService.generateToken(user);
-        }
+        return authenticationTokenService.generateToken(user);
     }
 }

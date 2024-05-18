@@ -13,6 +13,7 @@ import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
 import com.draftbash.features.users.interfaces.IUserRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -48,9 +49,9 @@ public class CreateUserServiceTest {
 
         // Mock repository methods
         when(userRepository.getUserByUsername("try"))
-            .thenReturn(null);
+            .thenReturn(Optional.empty());
         when(userRepository.getUserByEmail("test@example.com"))
-            .thenReturn(null);
+            .thenReturn(Optional.empty());
 
         // Mock password service
         when(passwordService
@@ -78,8 +79,8 @@ public class CreateUserServiceTest {
 
         // Mock repository method to return a user with the same username
         when(userRepository.getUserByUsername("existingUser"))
-                .thenReturn(new UserDTO("existingUser", 
-                    "test@example.com", "password"));
+                .thenReturn(Optional.of(new UserDTO("existingUser", 
+                    "test@example.com", "password")));
 
         // Act and Assert
         assertEquals(

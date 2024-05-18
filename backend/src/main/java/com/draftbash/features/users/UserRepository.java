@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -27,17 +28,6 @@ public class UserRepository implements IUserRepository {
         this.db = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    @Nullable
-    @Override
-    public UserDTO getUserByUsername(String username) {
-        final String SQL = "SELECT * FROM users WHERE username = :username LIMIT 1";
-        Map<String, Object> params = new HashMap<>();
-        params.put("username", username);
-
-        List<UserDTO> users = db.query(SQL, params, new AppUserDTORowMapper());
-        return users.isEmpty() ? null : users.get(0);
-    }
-
     @Override
     public void createUser(UserDTO user) {
         final String SQL = """
@@ -53,13 +43,24 @@ public class UserRepository implements IUserRepository {
 
     @Nullable
     @Override
-    public UserDTO getUserByEmail(String email) {
+    public Optional<UserDTO> getUserByUsername(String username) {
+        final String SQL = "SELECT * FROM users WHERE username = :username LIMIT 1";
+        Map<String, Object> params = new HashMap<>();
+        params.put("username", username);
+
+        List<UserDTO> users = db.query(SQL, params, new AppUserDTORowMapper());
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
+    }
+
+    @Nullable
+    @Override
+    public Optional<UserDTO> getUserByEmail(String email) {
         final String SQL = "SELECT * FROM users WHERE email = :email LIMIT 1";
         Map<String, Object> params = new HashMap<>();
         params.put("email", email);
 
         List<UserDTO> users = db.query(SQL, params, new AppUserDTORowMapper());
-        return users.isEmpty() ? null : users.get(0);
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
     }
 
     class AppUserDTORowMapper implements RowMapper<UserDTO> {

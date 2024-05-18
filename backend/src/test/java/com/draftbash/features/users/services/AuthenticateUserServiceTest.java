@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import com.draftbash.features.users.dtos.UserDTO;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IUserRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -39,7 +40,8 @@ public class AuthenticateUserServiceTest {
     public void testAuthenticate_Success() {
         // Mock behavior of userRepository
         when(userRepository.getUserByUsername("fakeUsername"))
-            .thenReturn(new UserDTO("fakeUsername", "email@example.com", "Password123!"));
+            .thenReturn(Optional.of(
+                new UserDTO("fakeUsername", "email@example.com", "Password123!")));
 
         // Mock behavior of authenticationTokenService
         when(authenticationTokenService.generateToken(any(UserDTO.class)))
@@ -48,7 +50,7 @@ public class AuthenticateUserServiceTest {
         // Perform the test
         final String AUTH_TOKEN = authenticateUserService
             .authenticate("fakeUsername", "Password123!");
-        
+
         // Verify the result
         assertEquals("fakeToken", AUTH_TOKEN);
     }
@@ -57,7 +59,7 @@ public class AuthenticateUserServiceTest {
     public void testAuthenticate_IncorrectUsername() {
         // Mock behavior of userRepository
         when(userRepository.getUserByUsername("fakeUsername"))
-            .thenReturn(null);
+            .thenReturn(Optional.empty());
 
         // Verify the result
         assertThrows(
@@ -70,7 +72,8 @@ public class AuthenticateUserServiceTest {
     public void testAuthenticate_IncorrectPassword() {
         // Mock behavior of userRepository
         when(userRepository.getUserByUsername("fakeUsername"))
-            .thenReturn(new UserDTO("fakeUsername", "email@example.com", "Password123!"));
+            .thenReturn(Optional.of(
+                new UserDTO("fakeUsername", "email@example.com", "Password123!")));
 
         // Verify the result
         assertThrows(
