@@ -1,6 +1,7 @@
 package com.draftbash.features.users;
 
 import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.services.CreateUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +33,12 @@ public class UserController {
     @PostMapping("")
     public ResponseEntity<Object> createAppUser(@RequestBody UserDTO createAppUserRequest) {
         try {
-            String authenticationToken = createAppUserService.createAppUser(createAppUserRequest);
+            String authenticationToken = createAppUserService.createUser(createAppUserRequest);
             return ResponseEntity.ok().body(authenticationToken);
-        } catch (IllegalArgumentException e) {
+        } catch (UserValidationException userValidationErrors) {
             return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
+                .status(HttpStatus.BAD_REQUEST)
+                .body(userValidationErrors.getErrors());
         } catch (Exception e) {
             return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
