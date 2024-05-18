@@ -1,0 +1,37 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    paths:
+    - 'backend/**'
+    types: [opened, synchronize]
+
+jobs:
+  lint:
+    name: Linting Checkstyle and Running Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install JDK 21
+      uses: actions/setup-java@v2
+      with:
+        java-version: '21'
+        distribution: 'adopt'
+
+    - name: Change directory to backend
+      run: cd backend
+      
+    - name: Grant execute permission to gradlew
+      run: chmod +x ./gradlew
+
+    - name: Clean build
+      run: ./gradlew clean build
+
+    - name: Run Checkstyle
+      run: ./gradlew checkstyleMain checkstyleTest
+
+    - name: Run Tests
+      run: ./gradlew test
