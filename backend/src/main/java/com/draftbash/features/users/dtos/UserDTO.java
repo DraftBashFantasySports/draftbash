@@ -1,7 +1,7 @@
 package com.draftbash.features.users.dtos;
 
 /**
- * Request to create a new app user.
+ * Data transfer object for user data.
 
  * @param username The username of the user.
  * @param email    The email of the user.

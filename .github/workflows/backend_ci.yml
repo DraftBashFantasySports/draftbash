@@ -21,17 +21,14 @@ jobs:
         java-version: '21'
         distribution: 'adopt'
 
-    - name: Change directory to backend
-      run: cd backend
-      
     - name: Grant execute permission to gradlew
-      run: chmod +x ./gradlew
+      run: cd backend && chmod +x gradlew
 
     - name: Clean build
-      run: ./gradlew clean build
+      run: cd backend && ./gradlew clean build
 
     - name: Run Checkstyle
-      run: ./gradlew checkstyleMain checkstyleTest
+      run: cd backend && ./gradlew checkstyleMain checkstyleTest
 
     - name: Run Tests
-      run: ./gradlew test
+      run: cd backend && ./gradlew test
