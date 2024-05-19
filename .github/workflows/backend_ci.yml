@@ -2,8 +2,6 @@ name: Continuous Integration
 
 on:
   pull_request:
-    paths:
-    - 'backend/**'
     types: [opened, synchronize]
 
 jobs:
@@ -22,13 +20,13 @@ jobs:
         distribution: 'adopt'
 
     - name: Grant execute permission to gradlew
-      run: cd backend && chmod +x gradlew
+      run: cd apps/backend && chmod +x gradlew
 
     - name: Clean build
-      run: cd backend && ./gradlew clean build
+      run: cd apps/backend && ./gradlew clean build
 
     - name: Run Checkstyle
-      run: cd backend && ./gradlew checkstyleMain checkstyleTest
+      run: cd apps/backend && ./gradlew checkstyleMain checkstyleTest
 
     - name: Run Tests
-      run: cd backend && ./gradlew test
+      run: cd apps/backend && ./gradlew test
