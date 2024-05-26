@@ -2,6 +2,8 @@ name: Continuous Deployment
 
 on:
   push:
+    paths:
+      - 'apps/backend/**'
     branches:
       - main
 

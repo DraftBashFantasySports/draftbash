@@ -48,7 +48,8 @@
         "consistent-return": "off",
         "react/jsx-no-constructed-context-values": "off",
         "react-hooks/exhaustive-deps": "off",
-        "react/require-default-props": "off"
+        "react/require-default-props": "off",
+        "react/no-unknown-property": "off"
     },
     "settings": {
         "import/resolver": {
