@@ -10,7 +10,7 @@ public class UserValidationException extends IllegalArgumentException {
     private Map<String, String> errors;
 
     public UserValidationException(Map<String, String> errors) {
-        super("Validation failed");
+        super("User validation failed");
         this.errors = errors;
     }
 

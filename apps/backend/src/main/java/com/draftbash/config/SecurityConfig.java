@@ -1,4 +1,4 @@
-package com.draftbash;
+package com.draftbash.config;
 
 
 import org.springframework.context.annotation.Bean;

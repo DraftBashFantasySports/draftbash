@@ -40,7 +40,7 @@ public class UserRepository implements IUserRepository {
         params.put("email", user.email());
         params.put("password", user.password());
 
-        return db.update(SQL, params);
+        return db.queryForObject(SQL, params, Integer.class);
     }
 
     @Nullable

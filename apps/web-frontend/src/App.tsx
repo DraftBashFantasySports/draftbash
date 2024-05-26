@@ -1,43 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { SignupPage } from "./pages/web/signup-page/SignupPage";
+import { LoadingProvider } from "./contexts/LoadingContext";
+import { LoadingScreen } from "./pages/web/LoadingScreen";
+import { LoginPage } from "./pages/web/login-page/LoginPage";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { DashboardLayout } from "./components/web/layouts/dashboard-layout/DashboardLayout";
+import { DirectMessagesPage } from "./pages/web/direct-messages-page/DirectMessagesPage";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  const test: string = import.meta.env.VITE_API_URL;
-
-  console.log(test);
-
-  return (
-      <>
-          <div>
-              <a href="https://vitejs.dev" target="_blank">
-                  <img src={viteLogo} className="logo" alt="Vite logo" />
-              </a>
-              <a href="https://react.dev" target="_blank">
-                  <img
-                      src={reactLogo}
-                      className="logo react"
-                      alt="React logo"
-                  />
-              </a>
-          </div>
-          <h1>Vite + React %VITE_API_URL%</h1>
-          <div className="card">
-              <button onClick={() => setCount((count) => count + 1)}>
-                  count is {count}
-              </button>
-              <p>
-                  Edit <code>src/App.tsx</code> and save to test HMR
-              </p>
-          </div>
-          <p className="read-the-docs">
-              Click on the Vite and React logos to learn more
-          </p>
-      </>
-  );
+export function App() {
+    return (
+        <AuthProvider>
+            <LoadingProvider>
+                <LoadingScreen />
+                <Router>
+                    <Routes>
+                        <Route path="/signup" element={<SignupPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route element={<ProtectedRoute />}>
+                            <Route path="/" element={<DashboardLayout />} />
+                            <Route path="/messages" element={<DirectMessagesPage />} />
+                        </Route>
+                    </Routes>
+                </Router>
+            </LoadingProvider>
+        </AuthProvider>
+    );
 }
-
-export default App

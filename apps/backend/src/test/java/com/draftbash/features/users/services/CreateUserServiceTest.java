@@ -54,6 +54,8 @@ public class CreateUserServiceTest {
             .thenReturn(Optional.empty());
         when(userRepository.getUserByEmail("test@example.com"))
             .thenReturn(Optional.empty());
+        when(userRepository.createUser(user))
+            .thenReturn(1);
 
         // Mock password service
         when(passwordService
@@ -87,7 +89,7 @@ public class CreateUserServiceTest {
 
         // Act and Assert
         assertEquals(
-            "Username 'existingUser' already exists",
+            "Username already exists",
             assertThrows(UserValidationException.class,
                 () -> createUserService.createUser(user)).getErrors().get("username")
         );
@@ -117,6 +119,20 @@ public class CreateUserServiceTest {
         // Act and Assert
         assertEquals(
             "Email is required",
+            assertThrows(UserValidationException.class,
+                () -> createUserService.createUser(user)).getErrors().get("email")
+        );
+        verify(userRepository, never()).createUser(any(UserCreationDTO.class));
+    }
+
+    @Test
+    public void testCreateUser_EmailInvalid() {
+        // Arrange
+        UserCreationDTO user = new UserCreationDTO("validUsername", "invalidEmail", "Password123!");
+
+        // Act and Assert
+        assertEquals(
+            "Email must be a valid email address",
             assertThrows(UserValidationException.class,
                 () -> createUserService.createUser(user)).getErrors().get("email")
         );

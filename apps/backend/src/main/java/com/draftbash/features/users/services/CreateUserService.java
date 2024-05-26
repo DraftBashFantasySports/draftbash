@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 /**
  * This class is responsible for creating a new user.
 
- * @param passwordService The password service.
- * @param userRepository The repository for app users.
+ * @param passwordService            The password service.
+ * @param userRepository             The repository for app users.
  * @param authenticationTokenService The authentication token service.
  */
 @Service
@@ -28,8 +28,8 @@ public class CreateUserService {
      * Constructor for the CreateAppUserService.
      */
     public CreateUserService(IPasswordEncryptionService passwordService,
-                                 IUserRepository appUsersRepository,
-                                 IAuthenticationTokenService authenticationTokenService) {
+            IUserRepository appUsersRepository,
+            IAuthenticationTokenService authenticationTokenService) {
         this.passwordService = passwordService;
         this.userRepository = appUsersRepository;
         this.authenticationTokenService = authenticationTokenService;
@@ -43,68 +43,69 @@ public class CreateUserService {
      */
     public String createUser(UserCreationDTO user) {
 
-        final String USERNAME = user.username();
-        final String EMAIL = user.email();
-        final String PASSWORD = user.password();
-
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("username", null);
         errorMap.put("email", null);
         errorMap.put("password", null);
 
         // Check if the username, email, and password are provided
-        if (USERNAME == null || USERNAME.isEmpty()) {
+        if (user.username() == null || user.username().isEmpty()) {
             errorMap.put("username", "Username is required");
         }
-        if (EMAIL == null || EMAIL.isEmpty()) {
+        if (user.email() == null || user.email().isEmpty()) {
             errorMap.put("email", "Email is required");
         }
-        if (PASSWORD == null || PASSWORD.isEmpty()) {
+        if (user.password() == null || user.password().isEmpty()) {
             errorMap.put("password", "Password is required");
         }
 
-        if (USERNAME != null && USERNAME.length() < 3) {
+        if (user.username() != null && user.username().length() < 3) {
             errorMap.put("username", "Username must be at least 3 characters long");
-        } else if (USERNAME != null && USERNAME.length() > 25) {
+        } else if (user.username() != null && user.username().length() > 25) {
             errorMap.put("username", "Username must be at most 25 characters long");
-        } else if (USERNAME != null && !USERNAME.matches("^[a-zA-Z0-9]*$")) {
+        } else if (user.username() != null && !user.username().matches("^[a-zA-Z0-9]*$")) {
             errorMap.put("username", "Username must contain only letters and numbers");
         }
 
-        if (PASSWORD != null && PASSWORD.length() < 8) {
+        if (user.email() != null
+                && !user.email().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            errorMap.put("email", "Email must be a valid email address");
+        }
+
+        if (user.password() != null && user.password().length() < 8) {
             errorMap.put("password", "Password must be at least 8 characters long");
-        } else if (PASSWORD != null && PASSWORD.length() > 50) {
+        } else if (user.password() != null && user.password().length() > 50) {
             errorMap.put("password", "Password must be at most 25 characters long");
-        } else if (PASSWORD != null && !PASSWORD.matches(".*[A-Z].*")) {
+        } else if (user.password() != null && !user.password().matches(".*[A-Z].*")) {
             errorMap.put("password", "Password must contain at least 1 uppercase letter");
-        } else if (PASSWORD != null && !PASSWORD.matches(".*[a-z].*")) {
+        } else if (user.password() != null && !user.password().matches(".*[a-z].*")) {
             errorMap.put("password", "Password must contain at least 1 lowercase letter");
-        } else if (PASSWORD != null && !PASSWORD.matches(".*[0-9].*")) {
+        } else if (user.password() != null && !user.password().matches(".*[0-9].*")) {
             errorMap.put("password", "Password must contain at least 1 number");
-        } else if (PASSWORD != null && !PASSWORD.matches(".*[!@#$%^&*].*")) {
+        } else if (user.password() != null && !user.password().matches(".*[!@#$%^&*].*")) {
             errorMap.put("password", "Password must contain at least 1 special character");
         }
 
         // Check if the username is already taken
-        if (userRepository.getUserByUsername(USERNAME).isPresent()) {
-            errorMap.put("username", String.format("Username '%s' already exists", USERNAME));
+        if (userRepository.getUserByUsername(user.username()).isPresent()) {
+            errorMap.put(
+                    "username", "Username already exists");
         }
 
         // Check if the email is already taken
         if (userRepository.getUserByEmail(user.email()).isPresent()) {
-            errorMap.put("email", String.format("Email '%s' already exists", EMAIL));
+            errorMap.put("email", "Email already exists");
         }
 
         if (!errorMap.values().stream().allMatch(error -> error == null)) {
             throw new UserValidationException(errorMap);
         }
-        final String HASHED_PASSWORD = passwordService.encode(PASSWORD);
+        final String hashedPassword = passwordService.encode(user.password());
 
-        final int USER_ID = userRepository.createUser(new UserCreationDTO(
-            USERNAME, EMAIL, HASHED_PASSWORD));
-        
+        final int userId = userRepository.createUser(new UserCreationDTO(
+                user.username(), user.email(), hashedPassword));
+
         return authenticationTokenService.generateToken(
-            new UserDTO(USER_ID, USERNAME, EMAIL, HASHED_PASSWORD)
-        );
+                new UserDTO(userId, user.username(), user.email(), hashedPassword));
     }
 }

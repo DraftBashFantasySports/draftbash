@@ -6,6 +6,8 @@ import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.services.AuthenticateUserService;
 import com.draftbash.features.users.services.CreateUserService;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +50,10 @@ public class UserController {
     @PostMapping("")
     public ResponseEntity<Object> createUser(@RequestBody UserCreationDTO createUserRequest) {
         try {
-            String authenticationToken = createUserService.createUser(createUserRequest);
-            return ResponseEntity.ok().body(authenticationToken);
+            final String authenticationToken = createUserService.createUser(createUserRequest);
+            final Map<String, String> response = new HashMap<>();
+            response.put("jwtToken", authenticationToken);
+            return ResponseEntity.ok().body(response);
         } catch (UserValidationException userValidationErrors) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -71,12 +75,17 @@ public class UserController {
     public ResponseEntity<Object> verifyToken(
         @RequestParam(name = "token", required = true) String token) {
         try {
-            final UserDTO USER = authenticationTokenService.verify(token);
-            return ResponseEntity.ok().body(USER);
-        } catch (UserValidationException userValidationErrors) {
+            final UserDTO user = authenticationTokenService.verify(token);
+            final HashMap<String, Object> response = new HashMap<String, Object>();
+            response.put("id", user.id());
+            response.put("user", user.username());
+            response.put("email", user.email());
+        
+            return ResponseEntity.ok().body(response);
+        } catch (IllegalArgumentException userValidationErrors) {
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
-                    .body(userValidationErrors.getErrors());
+                    .body(userValidationErrors.getMessage());
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -94,13 +103,19 @@ public class UserController {
     public ResponseEntity<Object> authenticateUser(
             @RequestBody UserCreationDTO authenticateUserRequest) {
         try {
-            String authenticationToken = authenticateUserService.authenticate(
-                    authenticateUserRequest);
-            return ResponseEntity.ok().body(authenticationToken);
-        } catch (UserValidationException userValidationErrors) {
+            final String authenticationToken = authenticateUserService.authenticate(
+                authenticateUserRequest);
+            final UserDTO user = authenticationTokenService.verify(authenticationToken);
+            final Map<String, Object> response = new HashMap<>();
+            response.put("jwtToken", authenticationToken);
+            response.put("user", user);
+            return ResponseEntity.ok().body(response);
+        } catch (IllegalArgumentException userValidationErrors) {
+            Map<String, String> response = new HashMap<>();
+            response.put("authenticationError", userValidationErrors.getMessage());
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
-                    .body(userValidationErrors.getErrors());
+                    .body(response);
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
