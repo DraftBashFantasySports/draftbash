@@ -1,4 +1,4 @@
-package com.draftbash.features.users;
+package com.draftbash.features.users.repositories;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
 import com.draftbash.features.users.dtos.UserDTO;
@@ -72,10 +72,10 @@ public class UserRepository implements IUserRepository {
     class UserDTORowMapper implements RowMapper<UserDTO> {
 
         @Override
-        public UserDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+        public UserDTO mapRow(ResultSet resultSet, int rowNum) throws SQLException {
             UserDTO user = new UserDTO(
-                    rs.getInt("id"), rs.getString("username"),
-                    rs.getString("email"), rs.getString("password"));
+                    resultSet.getInt("id"), resultSet.getString("username"),
+                    resultSet.getString("email"), resultSet.getString("password"));
             return user;
         }
     }

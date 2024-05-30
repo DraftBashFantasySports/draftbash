@@ -27,14 +27,14 @@ public class AuthenticationTokenService implements IAuthenticationTokenService {
     @Override
     public String generateToken(UserDTO appUser) {
         return Jwts.builder()
-                .setSubject(appUser.username()) // Use username as the subject
-                .claim("id", appUser.id()) // Add id as a custom claim
-                .claim("username", appUser.username()) // Add username as a custom claim
-                .claim("email", appUser.email()) // Add email as a custom claim
-                .claim("password", appUser.password()) // Add password as a custom claim
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
-                .compact();
+            .setSubject(appUser.username()) // Use username as the subject
+            .claim("id", appUser.id()) // Add id as a custom claim
+            .claim("username", appUser.username()) // Add username as a custom claim
+            .claim("email", appUser.email()) // Add email as a custom claim
+            .claim("password", appUser.password()) // Add password as a custom claim
+            .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+            .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
+            .compact();
     }
 
     /**

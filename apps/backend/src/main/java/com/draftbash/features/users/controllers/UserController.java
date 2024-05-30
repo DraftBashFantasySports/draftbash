@@ -1,4 +1,4 @@
-package com.draftbash.features.users;
+package com.draftbash.features.users.controllers;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
 import com.draftbash.features.users.dtos.UserDTO;

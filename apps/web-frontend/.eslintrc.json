@@ -49,7 +49,9 @@
         "react/jsx-no-constructed-context-values": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/require-default-props": "off",
-        "react/no-unknown-property": "off"
+        "react/no-unknown-property": "off",
+        "react/no-array-index-key": "off",
+        "no-else-return": "off"
     },
     "settings": {
         "import/resolver": {

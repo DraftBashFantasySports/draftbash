@@ -1,4 +1,5 @@
 # Common configurations applicable to all environments
+
 spring:
   profiles:
     active: dev  # Set the default profile to 'dev'
@@ -12,6 +13,8 @@ logging:
 ---
 
 # Development profile configuration
+server:  
+  port: 3000
 spring:
   config:
     activate:

@@ -42,10 +42,10 @@ export function Sidebar() {
                 </li>
                 <li>
                     <Link
-                        to="/mock-drafts"
-                        css={[styles.link, url === "/mock-drafts" && styles.selectedLink]}
+                        to="/drafts"
+                        css={[styles.link, url === "/drafts" && styles.selectedLink]}
                     >
-                        <p css={url === "/mock-drafts" ? styles.selectedLinkIndicator : {}} />
+                        <p css={url === "/drafts" ? styles.selectedLinkIndicator : {}} />
                         <PiGridNineLight css={styles.linkIcon} />
                         Mock Drafts
                     </Link>
