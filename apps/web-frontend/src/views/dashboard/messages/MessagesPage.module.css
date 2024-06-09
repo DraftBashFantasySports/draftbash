@@ -1,0 +1,15 @@
+.heading {
+    display: flex;
+    align-items: center; 
+}
+
+.heading h1 {
+    font-size: var(--font-medium);
+    color: var(--white);
+}
+
+.heading p {
+    margin-left: 20px;
+    font-size: var(--font-xsmall);
+    color: var(--grey);
+}

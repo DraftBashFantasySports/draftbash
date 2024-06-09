@@ -107,8 +107,12 @@ public class UserController {
                 authenticateUserRequest);
             final UserDTO user = authenticationTokenService.verify(authenticationToken);
             final Map<String, Object> response = new HashMap<>();
+            final HashMap<String, Object> userResponse = new HashMap<String, Object>();
+            userResponse.put("id", user.id());
+            userResponse.put("username", user.username());
+            userResponse.put("email", user.email());
             response.put("jwtToken", authenticationToken);
-            response.put("user", user);
+            response.put("user", userResponse);
             return ResponseEntity.ok().body(response);
         } catch (IllegalArgumentException userValidationErrors) {
             Map<String, String> response = new HashMap<>();

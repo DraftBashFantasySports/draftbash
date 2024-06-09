@@ -33,7 +33,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
                 SELECT
                     pick_order_format, sport, pick_time_limit, scoring_format, quarterback_limit,
                     running_back_limit, wide_receiver_limit, tightend_limit, kicker_limit, 
-                    defense_limit, flex_limit, bench_limit, created_at, draft_id
+                    defense_limit, flex_limit, bench_limit, created_at, draft_id,
                     (SELECT MAX(team_number)
                     FROM draft_picks
                     WHERE draft_picks.draft_id = draft.id) AS team_count

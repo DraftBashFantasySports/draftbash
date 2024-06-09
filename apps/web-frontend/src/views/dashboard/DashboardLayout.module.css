@@ -1,0 +1,68 @@
+main {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.content header {
+    display: flex;
+    gap: 25px;
+}
+
+.content header .leftpanelheader {
+    flex: 1;
+    padding: 0 20px 40px;
+    min-width: 800px;
+
+    @media(max-width: 1300px) {
+        min-width: 500px;
+    }
+}
+
+.content header .rightpanelheader {
+    flex: 1;
+    min-width: 260px;
+
+    @media(max-width: 1300px) {
+        max-width: 400px;
+    }
+}
+
+.panels {
+    display: flex;
+    gap: 25px;
+    height: 100%;
+}
+
+.panels .panel {
+    flex: 1;
+    height: 100%;
+    background-color: var(--grey3);
+    border: 1px solid var(--grey2);
+    border-radius: 15px;
+}
+
+.panels .left {
+    min-width: 800px;
+
+    @media(max-width: 1300px) {
+        min-width: 500px;
+    }
+}
+
+.panels .right {
+    min-width: 260px;
+
+    @media(max-width: 1300px) {
+        max-width: 400px;
+    }
+}

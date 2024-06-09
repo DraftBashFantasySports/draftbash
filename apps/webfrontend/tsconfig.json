@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "skipLibCheck": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "jsx": "react-jsx",
+        "types": ["vitest/globals", "node"],
+        "outDir": "./dist" // Specify the output directory here
+    },
+    "include": ["vite.config.ts", "./src/**/*.ts", "./src/**/*.tsx"]
+}

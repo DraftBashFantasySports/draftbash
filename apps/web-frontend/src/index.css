@@ -1,32 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --prussianBlue: rgb(0, 50, 85);
-  --gold: rgb(255, 215, 0);
-  --mint: rgb(60, 180, 140);
-  --whiteSmoke: rgb(245, 245, 245);
-  --grey: rgb(50, 50, 50);
-  --indigo: rgb(75, 0, 130);
-  --denim: rgb(20, 30, 60);
-  --spaceCadet: rgb(30, 40, 80);
-  --red: rgb(210, 50, 45);
-  --darkGrey: rgb(60, 71, 102);
-  --darkGrey2: rgb(45, 55, 75);
-  --darkGrey3: rgb(40, 50, 60);
-  --darkGrey4: rgb(30, 35, 50);
-  --darkGrey5: rgb(20, 25, 35);
-  --silver: rgb(175, 175, 200);
-  --lavender: rgb(230, 160, 245);
-  --aqua: rgb(0, 255, 255);
+  /* Colors */
+  --primary: #161622;
+  --secondary: #FF9C01;
+  --black: #000;
+  --black1: #1E1E2D;
+  --black2: #272736;
+  --grey: #CDCDE0;
+  --grey1: #A0A0AF;
+  --grey2: #6A6A74;
+  --grey3: #3d3d42;
+  --white: #FFF;
+  --white1: #EAEAFF;
+  --green: #0BE396;
+
+  /* Font sizes */
+  --font-xsmall: 15px;
+  --font-small: 20px;
+  --font-medium: 30px;
+  --font-large: 40px;
+  --font-xlarge: 50px;
 }
 
 *{
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing:border-box;
     list-style-type:none;
-    border-spacing: 0px;
+    border-spacing: 0;
     font-size: 16px;
     user-select: none;
     outline: none;

@@ -1,0 +1,131 @@
+/* Layout styles */
+main {
+    display: flex;
+    overflow: hidden;
+}
+
+.leftcolumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 40%;
+    padding: 50px;
+    background-color: var(--primary);
+
+    @media(max-width: 1000px) {
+        display: none;
+    }
+}
+
+.rightcolumn {
+    display: flex;
+    flex-direction: column;
+    flex: 60%;
+    justify-content: center;
+    height: 100vh;
+    padding: 150px;
+    background-color: var(--white1);
+    overflow: auto;
+}
+
+/* Element styles for the left column */
+.leftcolumn h2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: var(--font-xlarge);
+    color: var(--white);
+}
+
+.leftcolumn .logoicon {
+    width: 60px;
+    height: 60px;
+}
+
+.leftcolumn .confetti {
+    height: 300px;
+    width: 300px;
+}
+
+.leftcolumn .slogan {
+    width: 500px;
+    text-align: center;
+    font-weight: 600;
+    font-size: var(--font-medium);
+    color: var(--white);
+}
+
+.leftcolumn .slogan b {
+    position: relative;
+    color: var(--secondary);
+    font-size: var(--font-medium);
+}
+
+.leftcolumn .slogan b .underline {
+    position: absolute;
+    top: 30px;
+    left: -10px;
+    width: 175px;
+}
+
+.leftcolumn .description {
+    width: 500px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: var(--font-small);
+    color: var(--grey);
+}
+
+/* Element styles for the right column */
+
+.rightcolumn header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-width: 300px;
+}
+
+.rightcolumn header h1 {
+    font-size: var(--font-large);
+    color: var(--black);
+}
+
+.rightcolumn header a {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.rightcolumn .instructions {
+    min-width: 300px;
+    font-size: var(--font-xsmall);
+    font-weight: 300;
+    color: var(--grey2);
+}
+
+.rightcolumn form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+    width: 100%;
+    min-width: 300px;
+}
+
+form button {
+    width: 300px;
+    padding: 10px;
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+form button:hover {
+    box-shadow: 0 4px 8px rgba(0 4 8 / 50%);
+}

@@ -1,31 +1,21 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import { SignupPage } from "./pages/web/signup-page/SignupPage";
-import { LoadingProvider } from "./contexts/LoadingContext";
-import { LoadingScreen } from "./pages/web/LoadingScreen";
-import { LoginPage } from "./pages/web/login-page/LoginPage";
-import { ProtectedRoute } from "./routes/ProtectedRoute";
-import { DirectMessagesPage } from "./pages/web/direct-messages-page/DirectMessagesPage";
-import { MockDraftsPage } from "./pages/web/mock-drafts-page/MockDraftsPage";
+import { Routes, Route } from "react-router-dom";
+import { SignInPage } from "views/authentication/sign-in/SignInPage";
+import { BrowserRouter } from "react-router-dom";
+import { GlobalProvider } from "contexts/GlobalProvider";
+import { ProtectedRoute } from "@components/protected-route/ProtectedRoute";
+import { MessagesPage } from "views/dashboard/messages/MessagesPage";
 
-export function App() {
+export const App = () => {
     return (
-        <AuthProvider>
-            <LoadingProvider>
-                <LoadingScreen />
-                <Router>
-                    <Routes>
-                        <Route path="/signup" element={<SignupPage />} />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route element={<ProtectedRoute />}>
-                            <Route path="/" element={<MockDraftsPage />} />
-                            <Route path="/messages" element={<DirectMessagesPage />} />
-                            <Route path="/drafts" element={<MockDraftsPage />} />
-                        </Route>
-                    </Routes>
-                </Router>
-            </LoadingProvider>
-        </AuthProvider>
+        <GlobalProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/sign-in" element={<SignInPage />} />
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/" element={<MessagesPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </GlobalProvider>
     );
 }

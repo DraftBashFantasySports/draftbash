@@ -1,0 +1,13 @@
+name: Continuous Integration
+
+on:
+  push:
+    paths:
+      - 'apps/mobile-frontend**'
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Linting Checkstyle and Running Tests
+    runs-on: ubuntu-latest

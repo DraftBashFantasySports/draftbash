@@ -1,0 +1,32 @@
+.textinput {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.textinput input {
+    padding: 10px;
+    border: none;
+    font-size: var(--font-small);
+    font-weight: 400;
+    box-shadow: 0 4px 8px rgba(0 4 4 / 25%);
+}
+
+.textinput input:focus {
+    box-shadow: 0 4px 8px rgba(0 4 4 / 50%);
+}
+
+.textinput label {
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--grey3);
+}
+
+.textinput img {
+    position: absolute;
+    top: 50%;
+    left: calc(100% - 30px);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
