@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { TextInput } from "@components/text-input/TextInput";
 import { useSignInUser } from "@hooks/users/useSignInUser";
 import { useState } from "react";
+import { MessageSocket } from "services/websockets/messages/MessageSocket";
 
 export const SignInPage = () => {
+    const messageSocket = new MessageSocket(1);
     const { signInUser, isLoading, error } = useSignInUser();
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -23,14 +25,14 @@ export const SignInPage = () => {
             <section className={`${styles.leftcolumn}`}>
                 <h2>
                     <img
-                        src="src/assets/icons/draftbash.svg"
+                        src="icons/draftbash.svg"
                         alt="DraftBash logo"
                         className={`${styles.logoicon}`}
                     />
                     DraftBash
                 </h2>
                 <img
-                    src="src/assets/images/confetti.png"
+                    src="images/confetti.png"
                     alt="Confetti"
                     className={`${styles.confetti}`}
                 />
@@ -39,7 +41,7 @@ export const SignInPage = () => {
                     <b>
                         DraftBash{" "}
                         <img
-                            src="src/assets/images/underline.png"
+                            src="images/underline.png"
                             alt="Underline"
                             className={`${styles.underline}`}
                         />

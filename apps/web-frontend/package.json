@@ -12,15 +12,19 @@
         "lint:css:fix": "stylelint '**/*.{css,scss}' --fix"
     },
     "dependencies": {
+        "@stomp/stompjs": "^7.0.0",
         "axios": "^1.7.2",
+        "global": "^4.4.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^5.2.1",
-        "react-router-dom": "^6.23.1"
+        "react-router-dom": "^6.23.1",
+        "sockjs-client": "^1.6.1"
     },
     "devDependencies": {
         "@types/react": "^18.2.66",
         "@types/react-dom": "^18.2.22",
+        "@types/sockjs-client": "^1.5.4",
         "@typescript-eslint/eslint-plugin": "^7.2.0",
         "@typescript-eslint/parser": "^7.2.0",
         "@vitejs/plugin-react": "^4.2.1",

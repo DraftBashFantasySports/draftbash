@@ -10,12 +10,11 @@ import { useGlobalContext } from "contexts/GlobalProvider";
 export const NavBar = () => {
     const { user } = useGlobalContext();
     const currentUrlLocation = useLocation().pathname;
-    console.log(currentUrlLocation);
     return (
         <nav>
             <h2>
                 <img
-                    src="src/assets/icons/draftbash.svg"
+                    src="icons/draftbash.svg"
                     alt="DraftBash logo"
                     className={`${styles.icon}`}
                 />

@@ -10,6 +10,7 @@ export class UserApi {
             throw error;
         }
     }
+    
     public static async createUser(userData: UserCreationRequest): Promise<UserTokenResponse> {
         try {
             const response = await apiClient.post<UserTokenResponse>("/users", userData);
