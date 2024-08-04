@@ -40,7 +40,7 @@ export type DraftSettings = {
 export type Draft = {
     id: number;
     type: string;
-    createdAt: string | null;
+    createdAt: string;
     settings: DraftSettings;
 };
 

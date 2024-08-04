@@ -7,20 +7,11 @@ import { FootballPlayerTable } from "./components/football-player-table/Football
 import { FaSearch } from "react-icons/fa";
 
 export const LeftPanel = () => {
-    const { filteredPlayers, setFilteredPlayers, draftSettings, setSearchName } = useDraftContext();
+    const { filteredPlayers, draftSettings, setSearchName } = useDraftContext();
     const getPlayerTable = () => {
         if (draftSettings.sport === "football") {
             return <FootballPlayerTable players={filteredPlayers as FootballPlayer[]} />;
         }
-    };
-    const filterPlayersByName = (name: string) => {
-        setFilteredPlayers(
-            players.filter((player) =>
-                (player.firstName + " " + player.lastName)
-                    .toLowerCase()
-                    .includes(name.toLowerCase()),
-            ),
-        );
     };
     return (
         <div className={styles.leftpanel}>

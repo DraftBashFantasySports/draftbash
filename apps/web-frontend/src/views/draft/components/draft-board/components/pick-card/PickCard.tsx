@@ -1,4 +1,3 @@
-import { DraftPick } from "types/drafts";
 import styles from "./PickCard.module.css";
 import { useDraftContext } from "contexts/DraftProvider";
 import { FaArrowDownLong, FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";

@@ -1,4 +1,4 @@
-import { UserCreationRequest } from "../../services/api/users/types";
+import { UserCreationRequest } from "types/users";
 import { UserApi } from "../../services/api/users/UserApi";
 import { useState } from "react";
 import { TokenStorage } from "../../services/security/TokenStorage";

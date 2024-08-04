@@ -16,7 +16,7 @@ export const MockDraftItem = ({ draft }: Props) => {
             return (
                 <p>
                     {footballSettings.quarterbackLimit} QB, {footballSettings.runningBackLimit} RB,{" "}
-                    {footballSettings.wideReceiverLimit} WR, {footballSettings.tightendLimit} TE, 2
+                    {footballSettings.wideReceiverLimit} WR, {footballSettings.tightEndLimit} TE, 2
                     FLEX (W/R/T), {footballSettings.kickerLimit} K, {footballSettings.defenseLimit}{" "}
                     DEF, {footballSettings.benchLimit} BE
                 </p>

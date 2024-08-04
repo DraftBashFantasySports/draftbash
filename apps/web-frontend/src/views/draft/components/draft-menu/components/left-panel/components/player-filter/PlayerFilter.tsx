@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import styles from "./PlayerFilter.module.css";
 import { useDraftContext } from "contexts/DraftProvider";
 import { FootballDraftSettings } from "types/drafts";
-import { FootballPlayer } from "types/players";
 
 export const PlayerFilter = () => {
     const { draftSettings, fantasyTeams, draftUser, setSelectedPosition, selectedPosition  } =

@@ -1,4 +1,3 @@
-import { FantasyTeam } from "types/drafts";
 import styles from "./PlayerRoster.module.css";
 import { useDraftContext } from "contexts/DraftProvider";
 import { getFootballPlayerPosition } from "@utils/helpers";
@@ -17,7 +16,6 @@ export const FootballPlayerRoster = () => {
             return `Team ${teamNumber}`;
         }
     };
-    console.log(selectedTeam);
     return (
         <div className={styles.playerroster}>
             <select

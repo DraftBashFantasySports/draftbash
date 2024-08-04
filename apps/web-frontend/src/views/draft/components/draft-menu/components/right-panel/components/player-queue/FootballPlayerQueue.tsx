@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDraftContext } from "contexts/DraftProvider";
 import styles from "./PlayerQueue.module.css";
 import { getFootballPlayerPosition } from "@utils/helpers";
