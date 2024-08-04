@@ -46,7 +46,7 @@ export const FootballDraftConfiguration = () => {
                             updateDraftSettings({
                                 id: draftId,
                                 type: "football",
-                                createdAt: null,
+                                createdAt: "",
                                 settings: settings,
                             });
                             setIsModalOpen(false);
