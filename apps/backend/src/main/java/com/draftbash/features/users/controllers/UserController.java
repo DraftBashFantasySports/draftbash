@@ -1,12 +1,15 @@
 package com.draftbash.features.users.controllers;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import com.draftbash.features.users.dtos.UserDTO;
 import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.services.AuthenticateUserService;
 import com.draftbash.features.users.services.CreateUserService;
+import com.draftbash.features.users.services.GetUsersService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,15 +33,43 @@ public class UserController {
 
     private final IAuthenticationTokenService authenticationTokenService;
 
+    private final GetUsersService getUsersService;
+
     /**
      * Constructor for the UserController.
      */
     public UserController(CreateUserService createUserService,
             AuthenticateUserService authenticateUserService,
-            IAuthenticationTokenService authenticationTokenService) {
+            IAuthenticationTokenService authenticationTokenService,
+            GetUsersService getUsersService) {
         this.createUserService = createUserService;
         this.authenticateUserService = authenticateUserService;
         this.authenticationTokenService = authenticationTokenService;
+        this.getUsersService = getUsersService;
+    }
+
+    /**
+     * Retrieves users by username.
+
+     * @param username The username to search for
+     * @param excludeUserId The user ID to exclude from the search
+     * @return The users with the specified username
+     */
+    @GetMapping("")
+    public ResponseEntity<Object> getUsersByUsername(
+        @RequestParam(name = "username", required = true) String username,
+        @RequestParam(name = "exclude_user_id", required = true) int excludeUserId) {
+        try {
+            List<UserDTO> users = getUsersService.getUsersByUsername(username, excludeUserId);
+            final HashMap<String, Object> response = new HashMap<String, Object>();
+            response.put("users", users);
+        
+            return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An unexpected error occurred: " + e.getMessage());
+        }
     }
 
     /**
@@ -50,8 +81,8 @@ public class UserController {
     @PostMapping("")
     public ResponseEntity<Object> createUser(@RequestBody UserCreationDTO createUserRequest) {
         try {
-            final String authenticationToken = createUserService.createUser(createUserRequest);
-            final Map<String, String> response = new HashMap<>();
+            String authenticationToken = createUserService.createUser(createUserRequest);
+            Map<String, String> response = new HashMap<>();
             response.put("jwtToken", authenticationToken);
             return ResponseEntity.ok().body(response);
         } catch (UserValidationException userValidationErrors) {
@@ -75,13 +106,8 @@ public class UserController {
     public ResponseEntity<Object> verifyToken(
         @RequestParam(name = "token", required = true) String token) {
         try {
-            final UserDTO user = authenticationTokenService.verify(token);
-            final HashMap<String, Object> response = new HashMap<String, Object>();
-            response.put("id", user.id());
-            response.put("user", user.username());
-            response.put("email", user.email());
-        
-            return ResponseEntity.ok().body(response);
+            UserCredentialsDTO user = authenticationTokenService.verify(token);
+            return ResponseEntity.ok().body(new UserDTO(user.id(), user.username(), user.email()));
         } catch (IllegalArgumentException userValidationErrors) {
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
@@ -103,16 +129,12 @@ public class UserController {
     public ResponseEntity<Object> authenticateUser(
             @RequestBody UserCreationDTO authenticateUserRequest) {
         try {
-            final String authenticationToken = authenticateUserService.authenticate(
+            String authenticationToken = authenticateUserService.authenticate(
                 authenticateUserRequest);
-            final UserDTO user = authenticationTokenService.verify(authenticationToken);
-            final Map<String, Object> response = new HashMap<>();
-            final HashMap<String, Object> userResponse = new HashMap<String, Object>();
-            userResponse.put("id", user.id());
-            userResponse.put("username", user.username());
-            userResponse.put("email", user.email());
+            UserCredentialsDTO user = authenticationTokenService.verify(authenticationToken);
+            Map<String, Object> response = new HashMap<>();
             response.put("jwtToken", authenticationToken);
-            response.put("user", userResponse);
+            response.put("user", new UserDTO(user.id(), user.username(), user.email()));
             return ResponseEntity.ok().body(response);
         } catch (IllegalArgumentException userValidationErrors) {
             Map<String, String> response = new HashMap<>();

@@ -1,6 +1,6 @@
 package com.draftbash.features.users.interfaces;
 
-import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IAuthenticationTokenService {
 
-    public String generateToken(UserDTO appUser);
+    public String generateToken(UserCredentialsDTO user);
 
-    public UserDTO verify(String authenticationToken);
+    public UserCredentialsDTO verify(String authenticationToken);
 }

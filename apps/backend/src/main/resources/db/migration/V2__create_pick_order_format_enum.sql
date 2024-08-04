@@ -1,0 +1,1 @@
+CREATE TYPE pick_order_format AS ENUM ('linear', 'snake', 'auction');

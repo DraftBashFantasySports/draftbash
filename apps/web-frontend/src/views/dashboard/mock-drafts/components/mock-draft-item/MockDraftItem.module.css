@@ -1,0 +1,50 @@
+.mockdraftitem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.mockdraftitem:hover {
+    opacity: 0.7;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255 255 255 / 10%);
+    border-radius: 15px;
+    padding: 8px;
+}
+
+.mockdraftitem .settings h4 {
+    font-size: var(--font-xsmall);
+    color: var(--white);
+}
+
+.mockdraftitem .settings p {
+    font-weight: 500;
+    font-size: var(--font-xxsmall);
+    color: var(--grey);
+}
+
+.mockdraftitem .meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 45px;
+    margin-left: auto;
+}
+
+.mockdraftitem .meta .status {
+    font-weight: 600;
+    font-size: var(--font-xxsmall);
+    color: var(--blue);
+}
+
+.mockdraftitem .meta .timestamp {
+    text-align: right;
+    font-size: var(--font-xxsmall);
+    color: var(--grey);
+}

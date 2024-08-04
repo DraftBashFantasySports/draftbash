@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import { TextInput } from "@components/text-input/TextInput";
 import { useSignInUser } from "@hooks/users/useSignInUser";
 import { useState } from "react";
-import { MessageSocket } from "services/websockets/messages/MessageSocket";
 
 export const SignInPage = () => {
-    const messageSocket = new MessageSocket(1);
     const { signInUser, isLoading, error } = useSignInUser();
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");

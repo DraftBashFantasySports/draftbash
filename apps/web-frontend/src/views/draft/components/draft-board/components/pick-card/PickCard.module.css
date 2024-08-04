@@ -1,0 +1,91 @@
+.card {
+    position: relative;
+    height: 50px;
+    min-width: 120px;
+    padding: 2px 4px;
+    border-radius: 10px;
+    background-color: var(--black1);
+    cursor: pointer;
+}
+
+.card:hover {
+    opacity: 0.5;
+}
+
+.card.runningback {
+    background-color: var(--green);
+}
+
+.card.widereceiver {
+    background-color: var(--blue);
+}
+
+.card.quarterback {
+    background-color: var(--red);
+}
+
+.card.kicker {
+    background-color: var(--pink);
+}
+
+.card.defense {
+    background-color: var(--orange);
+}
+
+.card.tightend {
+    background-color: var(--yellow);
+}
+
+.card span {
+    position: absolute;
+    right: 5px;
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: var(--grey);
+}
+
+.card.drafted span {
+    color: var(--black);
+}
+
+.card .arrow {
+    position: absolute;
+    padding: 3px;
+    color: var(--white);
+    left: 3px;
+    bottom: 0;
+}
+
+.card.drafted .arrow {
+    color: var(--black);
+}
+
+.card .playername {
+    width: 85px;
+    margin-bottom: -5px;
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card p:nth-child(2) {
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: var(--black);
+}
+
+.card .playerinfo {
+    position: absolute;
+    position: flex;
+    flex-direction: column;
+}
+
+.card img {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    height: 35px;
+    width: 45px;
+}

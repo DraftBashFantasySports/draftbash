@@ -10,6 +10,5 @@ package com.draftbash.features.users.dtos;
 public record UserDTO(
     int id,
     String username,
-    String email,
-    String password
+    String email
 ) {}

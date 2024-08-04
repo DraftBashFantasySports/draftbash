@@ -1,0 +1,33 @@
+team_abbreviation,team_city,losses,team_name,logo_url,id,ties,division,conference,wins,current_win_streak
+ARI,Arizona,13,Cardinals,https://static.www.nfl.com/image/private/f_auto/league/u9fltoslqdsyao8cpm0k,1,0,West,NFC,4,-1
+ATL,Atlanta,10,Falcons,https://static.www.nfl.com/image/private/f_auto/league/d8m7hzpsbrl6pnqht8op,2,0,East,NFC,7,-2
+BAL,Baltimore,4,Ravens,https://res.cloudinary.com/nflleague/image/private/f_auto/league/ucsdijmddsqcj1i9tddd,3,0,North,AFC,13,-1
+BUF,Buffalo,6,Bills,https://res.cloudinary.com/nflleague/image/private/f_auto/league/giphcy6ie9mxbnldntsf,4,0,East,AFC,11,5
+CAR,Carolina,15,Panthers,https://static.www.nfl.com/image/private/f_auto/league/ervfzgrqdpnc7lh5gqwq,5,0,South,NFC,2,-3
+CHI,Chicago,10,Bears,https://static.www.nfl.com/image/private/f_auto/league/wb3ehpt7xhkstyaxwjl1,6,0,North,NFC,7,-1
+CIN,Cincinnati,8,Bengals,https://res.cloudinary.com/nflleague/image/private/f_auto/league/okxpteoliyayufypqalq,7,0,North,AFC,9,1
+CLE,Cleveland,6,Browns,https://static.www.nfl.com/image/private/f_auto/league/fgbn8acp4opvyxk13dcy,8,0,North,AFC,11,-1
+DAL,Dallas,5,Cowboys,https://static.www.nfl.com/image/private/f_auto/league/ieid8hoygzdlmzo0tnf6,9,0,East,NFC,12,2
+DEN,Denver,9,Broncos,https://res.cloudinary.com/nflleague/image/private/f_auto/league/t0p7m5cjdjy18rnzzqbx,10,0,West,AFC,8,-1
+DET,Detroit,5,Lions,https://res.cloudinary.com/nflleague/image/private/f_auto/league/ocvxwnapdvwevupe4tpr,11,0,North,NFC,12,1
+GB,Green Bay,8,Packers,https://res.cloudinary.com/nflleague/image/private/f_auto/league/gppfvr7n8gljgjaqux2x,12,0,North,NFC,9,3
+HOU,Houston,7,Texans,https://static.www.nfl.com/image/private/f_auto/league/bpx88i8nw4nnabuq0oob,13,0,South,AFC,10,2
+IND,Indianapolis,8,Colts,https://static.www.nfl.com/image/private/f_auto/league/ketwqeuschqzjsllbid5,14,0,South,AFC,9,-1
+JAX,Jacksonville,8,Jaguars,https://res.cloudinary.com/nflleague/image/private/f_auto/league/qycbib6ivrm9dqaexryk,15,0,South,AFC,9,-1
+KC,Kansas City,6,Chiefs,https://res.cloudinary.com/nflleague/image/private/f_auto/league/ujshjqvmnxce8m4obmvs,16,0,West,AFC,11,2
+LV,Las Vegas,9,Raiders,https://static.www.nfl.com/image/private/f_auto/league/gzcojbzcyjgubgyb6xf2,17,0,West,AFC,8,1
+LAC,Los Angeles,12,Chargers,https://static.www.nfl.com/image/private/f_auto/league/dhfidtn8jrumakbogeu4,18,0,West,AFC,5,-5
+LAR,Los Angeles,7,Rams,https://static.www.nfl.com/image/private/f_auto/league/ayvwcmluj2ohkdlbiegi,19,0,West,NFC,10,4
+MIA,Miami,6,Dolphins,https://res.cloudinary.com/nflleague/image/private/f_auto/league/lits6p8ycthy9to70bnt,20,0,South,AFC,11,-2
+MIN,Minnesota,10,Vikings,https://res.cloudinary.com/nflleague/image/private/f_auto/league/teguylrnqqmfcwxvcmmz,21,0,North,NFC,7,-4
+NE,New England,13,Patriots,https://res.cloudinary.com/nflleague/image/private/f_auto/league/moyfxx3dq5pio4aiftnc,22,0,East,AFC,4,-2
+NO,New Orleans,8,Saints,https://static.www.nfl.com/image/private/f_auto/league/grhjkahghjkk17v43hdx,23,0,South,NFC,9,2
+NYG,New York,11,Giants,https://res.cloudinary.com/nflleague/image/private/f_auto/league/t6mhdmgizi6qhndh8b9p,24,0,East,NFC,6,1
+NYJ,New York,10,Jets,https://static.www.nfl.com/image/private/f_auto/league/ekijosiae96gektbo4iw,25,0,East,AFC,7,1
+PIT,Pittsburgh,7,Steelers,https://res.cloudinary.com/nflleague/image/private/f_auto/league/xujg9t3t4u5nmjgr54wx,26,0,North,AFC,10,3
+PHI,Philadelphia,6,Eagles,https://res.cloudinary.com/nflleague/image/private/f_auto/league/puhrqgj71gobgdkdo6uq,27,0,East,NFC,11,-2
+SF,San Francisco,5,49ers,https://res.cloudinary.com/nflleague/image/private/f_auto/league/dxibuyxbk0b9ua5ih9hn,28,0,West,NFC,12,-1
+SEA,Seattle,8,Seahawks,https://res.cloudinary.com/nflleague/image/private/f_auto/league/gcytzwpjdzbpwnwxincg,29,0,West,NFC,9,1
+TB,Tampa Bay,8,Buccaneers,https://static.www.nfl.com/image/private/f_auto/league/v8uqiualryypwqgvwcih,30,0,South,NFC,9,1
+TEN,Tennessee,11,Titans,https://static.www.nfl.com/image/private/f_auto/league/pln44vuzugjgipyidsre,31,0,South,AFC,6,1
+WSH,Washington,13,Commanders,https://static.www.nfl.com/image/private/f_auto/league/xymxwrxtyj9fhaemhdyd,32,0,East,NFC,4,-8

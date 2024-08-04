@@ -1,0 +1,106 @@
+.heading {
+    display: flex;
+    align-items: center; 
+}
+
+.heading h1 {
+    font-size: var(--font-medium);
+    color: var(--white);
+}
+
+.heading p {
+    margin-left: 20px;
+    font-size: var(--font-xsmall);
+    color: var(--grey);
+}
+
+.leftpanel {
+    padding: 30px;
+}
+
+.leftpanel ul {
+    margin-top: 20px;
+}
+
+.leftpanel ul li {
+    padding: 10px 0;
+}
+
+.leftpanel .nodrafts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.leftpanel .nodrafts .icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+    color: var(--grey);
+}
+
+.leftpanel .nodrafts h4 {
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--grey);
+}
+
+.leftpanel .nodrafts p {
+    font-size: var(--font-xxsmall);
+    font-weight: 400;
+    color: var(--grey);
+}
+
+.rightpanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 100%;
+    padding: 30px;
+}
+
+.rightpanel .icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 20px;
+    color: var(--grey3);
+    background-color: var(--grey);
+}
+
+.rightpanel h3 {
+    margin-top: 10px;
+    margin-bottom: -15px;
+    font-size: var(--font-medium);
+    font-weight: 300;
+    color: var(--white);
+}
+
+.rightpanel p {
+    font-size: var(--font-xsmall);
+    font-weight: 300;
+    color: var(--white);
+}
+
+.rightpanel button {
+    height: 40px;
+    border-radius: 5px;
+    width: 220px;
+    border: none;
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.rightpanel button.footballdraftbtn {
+    background-color: var(--green);
+}
+
+.rightpanel button.basketballdraftbtn {
+    background-color: var(--secondary);
+}

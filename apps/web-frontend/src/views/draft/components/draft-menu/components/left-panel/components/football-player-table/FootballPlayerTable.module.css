@@ -1,0 +1,135 @@
+.footballplayertable .position.quarterback {
+    color: var(--red);
+}
+
+.footballplayertable .position.runningback {
+    color: var(--green);
+}
+
+.footballplayertable .position.widereceiver {
+    color: var(--blue);
+}
+
+.footballplayertable .position.tightend {
+    color: var(--yellow);
+}
+
+.footballplayertable .position.kicker {
+    color: var(--pink);
+}
+
+.footballplayertable .position.defense {
+    color: var(--orange);
+}
+
+.footballplayertable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.footballplayertable thead th {
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    padding: 0 10px;
+    background-color: var(--grey4);
+    text-align: center;
+    color: var(--grey1);
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+}
+
+.footballplayertable thead tr:nth-child(2) th {
+    z-index: 2;
+    border-bottom: 1px solid var(--black);
+    padding: 5px 10px;
+    top: 22px;
+}
+
+.footballplayertable thead tr:nth-child(2) th:first-child, 
+.footballplayertable thead tr:first-child th:first-child {
+    min-width: 120px;
+    text-align: right;
+    border-right: 1px solid var(--black);
+}
+
+.footballplayertable thead tr:nth-child(2) th:nth-child(2), 
+.footballplayertable thead tr:first-child th:nth-child(2) {
+    min-width: 250px;
+    text-align: left;
+    border-right: 1px solid var(--black);
+}
+
+.footballplayertable tbody td {
+    position: relative;
+    padding: 10px;
+    text-align: left;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.footballplayertable tbody tr {
+    transition: background-color 0.3s;
+}
+
+.footballplayertable tbody tr:hover {
+    background-color: var(--black2) !important;
+}
+
+.footballplayertable tbody tr:nth-child(even) {
+    background-color: var(--grey4);
+}
+
+.footballplayertable tbody td:first-child {
+    padding-right: 10px;
+    text-align: right;
+}
+
+.footballplayertable tbody td .playername {
+    position: absolute;
+    top: 3px;
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+}
+
+.footballplayertable tbody td .position {
+    position: absolute;
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: var(--green);
+}
+
+.footballplayertable tbody td .team {
+    position: absolute;
+    left: 35px;
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: var(--grey1);
+}
+
+.footballplayertable tbody td .injurystatus {
+    position: absolute;
+    left: 70px;
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: red
+}
+
+.footballplayertable tbody td button {
+    position: absolute;
+    left: 10px;
+    border: 2px solid var(--grey);
+    border-radius: 20px;
+    width: 70px;
+    background-color: transparent;
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    color: var(--grey);
+    cursor: pointer;
+}
+
+.footballplayertable tbody td .addbtn {
+    border: 2px solid red;
+    color: red;
+}

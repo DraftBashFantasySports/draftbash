@@ -1,0 +1,128 @@
+.playerroster {
+    padding: 0 10px 10px;
+}
+
+.playerroster select {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    background-color: var(--grey4);
+    border: none;
+    color: var(--white);
+    font-size: var(--font-small);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.playerroster ul {
+    padding: 0 5px 5px;
+}
+
+.playerroster ul li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.playerroster ul li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--grey);
+}
+
+.playerroster ul li .playername {
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--white);
+
+}
+
+.playerroster ul li .playerinfo {
+    height: 40px;
+}
+
+.playerroster ul li .position {
+    margin-top: -5px;
+    font-size: var(--font-xxsmall);
+    font-weight: 400;
+    color: var(--grey1);
+}
+
+.playerroster ul li.quarterback label, .playerroster ul li.runningback label, 
+.playerroster ul li.widereceiver label, .playerroster ul li.tightend label,
+.playerroster ul li.kicker label, .playerroster ul li.teamdefense label,
+.playerroster ul li.bench label {
+    width: 50px;
+    padding: 8px 0;
+    border-radius: 5px;
+    font-size: var(--font-xsmall);
+    color: var(--grey4);
+    text-align: center;
+    font-weight: 600;
+}
+
+.playerroster ul li.quarterback label {
+    background-color: var(--red);
+}
+
+.playerroster ul li.runningback label {
+    background-color: var(--green);
+}
+
+.playerroster ul li.widereceiver label {
+    background-color: var(--blue);
+}
+
+.playerroster ul li.tightend label {
+    background-color: var(--yellow);
+}
+
+.playerroster ul li.kicker label {
+    background-color: var(--pink);
+}
+
+.playerroster ul li.teamdefense label {
+    background-color: var(--orange);
+}
+
+.playerroster ul li.bench label {
+    background-color: var(--grey);
+}
+
+
+.playerroster ul li.flex label {
+    display: flex;
+    justify-content: space-between;
+    width: 50px;
+}
+
+.playerroster ul li.flex label p {
+    padding: 8px 0;
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    color: var(--grey4);
+    font-size: var(--font-xsmall);
+}
+
+.playerroster ul li.flex label p:nth-child(1) {
+    border-radius: 5px 0 0 5px;
+    background-color: var(--blue);
+}
+
+.playerroster ul li.flex label p:nth-child(2) {
+    background-color: var(--green);
+}
+
+.playerroster ul li.flex label p:nth-child(3) {
+    border-radius: 0 5px 5px 0;
+    background-color: var(--yellow);
+}
+
+.playerroster ul li p.empty {
+    font-size: var(--font-xsmall);
+    color: var(--grey);
+}

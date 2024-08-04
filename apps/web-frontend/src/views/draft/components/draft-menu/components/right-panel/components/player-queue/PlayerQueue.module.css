@@ -1,0 +1,91 @@
+.playerqueue {
+    padding-top: 50px;
+}
+
+.playerqueue h4 {
+    padding-bottom: 2px;
+    padding-left: 35px;
+    border-bottom: 1px solid var(--black);
+    color: var(--grey1);
+    font-size: var(--font-small);
+    font-weight: 400;
+}
+
+.playerqueue ul li {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    padding: 0 35px;
+    cursor: move;
+}
+
+.playerqueue ul li button {
+    border: 2px solid var(--grey);
+    border-radius: 20px;
+    width: 85px;
+    background-color: transparent;
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    color: var(--grey);
+    cursor: pointer;
+}
+
+.playerqueue ul li:nth-child(odd) {
+    background-color: var(--grey3);
+}
+
+.playerqueue ul li.dragging {
+    opacity: 0.5;
+    border: 2px dashed var(--grey1);
+}
+
+.playerqueue .playername {
+    margin-bottom: 14px;
+    font-size: var(--font-xsmall);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.playerqueue .playerinfo {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    bottom: 4px;
+}
+
+.playerqueue .position {
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+}
+
+.playerqueue .position.quarterback {
+    color: var(--red);
+}
+
+.playerqueue .position.runningback {
+    color: var(--green);
+}
+
+.playerqueue .position.widereceiver {
+    color: var(--blue);
+}
+
+.playerqueue .position.tightend {
+    color: var(--yellow);
+}
+
+.playerqueue .position.kicker {
+    color: var(--pink);
+}
+
+.playerqueue .position.defense {
+    color: var(--orange);
+}
+
+.playerqueue .playerteam {
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: var(--grey1);
+}

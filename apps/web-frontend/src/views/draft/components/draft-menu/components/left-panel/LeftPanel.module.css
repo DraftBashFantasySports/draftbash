@@ -1,0 +1,40 @@
+.leftpanel {
+    width: 60%;
+    min-width: 800px;
+    height: 100%;
+    background-color: var(--grey3);
+}
+
+.leftpanel header {
+    display: flex;
+    gap: 20px;
+    height: 70px;
+    padding: 15px 20px;
+    background-color: var(--grey4);
+}
+
+.leftpanel .content {
+    overflow-y: auto;
+    max-height: calc(100% - 70px);
+}
+
+.leftpanel header input {
+    width: 200px;
+    padding: 0 30px;
+    background-color: var(--black1);
+    border-radius: 25px;
+    border: none;
+    color: var(--white);
+    caret-color: var(--white);
+}
+
+.leftpanel header input::placeholder {
+    color: var(--grey);
+}
+
+.leftpanel header .searchicon {
+    position: absolute;
+    top: 28px;
+    left: 30px;
+    color: var(--grey);
+}

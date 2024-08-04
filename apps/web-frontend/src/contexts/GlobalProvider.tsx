@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { User } from "../services/api/users/types";
+import { User } from "types/users";
 import { TokenStorage } from "../services/security/TokenStorage";
 import { decodeJwt } from "../services/security/decodeJwt";
 

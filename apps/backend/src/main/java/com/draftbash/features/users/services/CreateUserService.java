@@ -1,7 +1,7 @@
 package com.draftbash.features.users.services;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
-import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
@@ -106,6 +106,6 @@ public class CreateUserService {
                 user.username(), user.email(), hashedPassword));
 
         return authenticationTokenService.generateToken(
-                new UserDTO(userId, user.username(), user.email(), hashedPassword));
+                new UserCredentialsDTO(userId, user.username(), user.email(), hashedPassword));
     }
 }

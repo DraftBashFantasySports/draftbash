@@ -22,7 +22,7 @@ export const TextInput = ({ placeholder, label, type = "text", handleOnChange }:
             />
             {type === "password" && (
                 <img
-                    src={`src/assets/icons/${showPassword ? "eyehide" : "eye"}.png`}
+                    src={`icons/${showPassword ? "eyehide" : "eye"}.png`}
                     alt="Show password"
                     onClick={() => setShowPassword(!showPassword)}
                 />

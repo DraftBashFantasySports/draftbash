@@ -1,0 +1,1 @@
+CREATE TYPE sport AS ENUM ('basketball', 'football', 'baseball', 'hockey', 'soccer', 'golf', 'tennis', 'volleyball');

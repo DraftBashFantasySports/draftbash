@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from "react-router-dom";
 import { useGlobalContext } from "contexts/GlobalProvider";
+import { Navigate, Outlet } from "react-router-dom";
 
 export function ProtectedRoute() {
     const { user, isLoading } = useGlobalContext();

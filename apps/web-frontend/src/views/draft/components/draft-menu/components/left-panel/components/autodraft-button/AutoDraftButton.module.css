@@ -1,0 +1,36 @@
+.autodraft {
+    display: flex;
+    line-height: 40px;
+}
+
+.autodraft label {
+    margin-right: 5px;
+    color: var(--grey);
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+}
+
+.autodraftbtn {
+    padding: 3px;
+    min-width: 70px;
+    border-radius: 25px;
+    background-color: var(--red);
+    cursor: pointer;
+}
+
+.autodraftbtn.on {
+    background-color: var(--green);
+}
+
+.autodraftbtn.on button {
+    transform: translateX(calc(100% - 6px));
+}
+
+.autodraftbtn button {
+    height: 100%;
+    width: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}

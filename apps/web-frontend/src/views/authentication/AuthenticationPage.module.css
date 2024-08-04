@@ -113,7 +113,7 @@ main {
     min-width: 300px;
 }
 
-form button {
+.rightcolumn form button {
     width: 300px;
     padding: 10px;
     font-size: var(--font-small);
@@ -126,6 +126,6 @@ form button {
     transition: box-shadow 0.3s;
 }
 
-form button:hover {
+.rightcolumn form button:hover {
     box-shadow: 0 4px 8px rgba(0 4 8 / 50%);
 }

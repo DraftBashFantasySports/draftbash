@@ -1,10 +1,12 @@
 # Common configurations applicable to all environments
-
 spring:
   profiles:
     active: dev  # Set the default profile to 'dev'
   main:
     web-application-type: servlet
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: '0'
 
 logging:
   level:
@@ -13,7 +15,7 @@ logging:
 ---
 
 # Development profile configuration
-server:  
+server:
   port: 3000
 spring:
   config:
@@ -22,8 +24,7 @@ spring:
   jwt:
     secret-key: json_web_token_secret_key_for_development_environment
   flyway:
-    baseline-on-migrate: true
-    baseline-version: '0'
+    locations: classpath:db/migration,classpath:db/devmigration
   datasource:
     url: jdbc:postgresql://0.0.0.0:5332/draftbash
     username: postgres
@@ -31,7 +32,7 @@ spring:
 
 ---
 
-# Development profile configuration
+# Another development profile configuration (dev2)
 spring:
   config:
     activate:
@@ -39,8 +40,7 @@ spring:
   jwt:
     secret-key: json_web_token_secret_key_for_development_environment
   flyway:
-    baseline-on-migrate: true
-    baseline-version: '0'
+    locations: classpath:db/migration,classpath:db/devmigration
   datasource:
     url: jdbc:postgresql://postgres:5432/draftbash
     username: postgres
@@ -55,6 +55,8 @@ spring:
       on-profile: prod
   jwt:
     secret-key: ${JWT_SECRET}
+  flyway:
+    locations: classpath:db/migration,classpath:db/devmigration
   datasource:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}

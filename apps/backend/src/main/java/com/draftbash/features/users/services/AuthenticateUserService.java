@@ -1,7 +1,7 @@
 package com.draftbash.features.users.services;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
-import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
 import com.draftbash.features.users.interfaces.IUserRepository;
@@ -52,7 +52,7 @@ public class AuthenticateUserService {
         }
 
         // Get the matched user.
-        Optional<UserDTO> matchedUser = userRepository.getUserByUsername(
+        Optional<UserCredentialsDTO> matchedUser = userRepository.getUserByUsername(
             user.username());
         if (!matchedUser.isPresent()) {
             matchedUser = userRepository.getUserByEmail(user.email());

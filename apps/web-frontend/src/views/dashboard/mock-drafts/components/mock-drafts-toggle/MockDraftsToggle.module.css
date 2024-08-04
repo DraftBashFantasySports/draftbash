@@ -1,0 +1,24 @@
+.toggle {
+    width: 100%;
+    height: 33px;
+    padding: 3px;
+    border-radius: 15px;
+    background-color: var(--black1);
+    cursor: pointer;
+}
+
+.toggle button {
+    width: 50%;
+    height: 100%;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--secondary);
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.toggle button.off {
+    transform: translateX(100%);
+}

@@ -21,11 +21,11 @@ export const NavBar = () => {
                 DraftBash
             </h2>
             <ul className={`${styles.pagelinks}`}>
-                <li className={`${currentUrlLocation === "/" ? styles.selected : ""}`}>
+                <li className={`${currentUrlLocation === "/messages" ? styles.selected : ""}`}>
                     <div className={`${styles.selectedindicator}`} />
                     <Link to="/messages">
                         <RiMessage3Line className={`${styles.icon}`} />
-                        Leagues
+                        Messages
                     </Link>
                 </li>
                 <li className={`${currentUrlLocation === "/mock-drafts" ? styles.selected : ""}`}>

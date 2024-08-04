@@ -1,0 +1,1 @@
+CREATE TYPE scoring_format AS ENUM ('points', 'categories', 'ppr', 'half_ppr', 'standard');

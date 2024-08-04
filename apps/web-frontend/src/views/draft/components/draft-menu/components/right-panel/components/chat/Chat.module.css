@@ -1,0 +1,79 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5px 10px;
+}
+
+.chat.full {
+    max-height: 75vh;
+    height: 75vh;
+}
+
+.chat.open {
+    max-height: 50vh;
+    height: 50vh;
+}
+
+.chat.closed {
+    max-height: 0;
+    height: 0;
+}
+
+.chat ul {
+    padding: 15px;
+    border-bottom: 2px solid var(--grey2);
+    margin-bottom: 10px;
+    max-height: 34vh;
+    overflow: auto;
+}
+
+.chat ul li {
+    margin-top: 15px;
+}
+
+.chat ul li span.username {
+    display: inline-block;
+    height: 18px;
+    padding: 2px;
+    background-color: rgba(255 187 0 / 50%);
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+    line-height: 14px;
+    color: var(--white);
+}
+
+.chat ul li p {
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+    color: var(--white);
+}
+
+.chat .input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat .input button {
+    width: 80px;
+    height: 42px;
+    background-color: var(--black1);
+    font-weight: 500;
+    font-size: var(--font-xsmall);
+    color: var(--grey2);
+    border: none;
+    cursor: pointer;
+}
+
+.chat .input input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 22px;
+    border: none;
+    background-color: var(--black1);
+    font-size: var(--font-xsmall);
+    color: var(--grey);
+}
+

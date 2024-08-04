@@ -1,10 +1,9 @@
 package com.draftbash.features.drafts.controllers;
 
-import com.draftbash.features.drafts.dtos.FootballDraftCreationDTO;
-import com.draftbash.features.drafts.dtos.FootballDraftSettingsDTO;
-import com.draftbash.features.drafts.interfaces.IFootballDraftRepository;
-import com.draftbash.features.drafts.services.CreateFootballDraftService;
-import java.util.HashMap;
+import com.draftbash.features.drafts.dtos.DraftDTO;
+import com.draftbash.features.drafts.dtos.football.FootballDraftCreationRequestDTO;
+import com.draftbash.features.drafts.repositories.FootballDraftRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/drafts")
 public class DraftController {
 
-    private final CreateFootballDraftService createFootballDraftService;
-
-    private final IFootballDraftRepository footballDrafRepository;
+    private final FootballDraftRepository footballDraftRepository;
 
     public DraftController(
-            CreateFootballDraftService createFootballDraftService,
-            IFootballDraftRepository draftRepository) {
-        this.createFootballDraftService = createFootballDraftService;
-        this.footballDrafRepository = draftRepository;
+            FootballDraftRepository draftRepository) {
+        this.footballDraftRepository = draftRepository;
     }
 
     /**
@@ -40,12 +35,11 @@ public class DraftController {
      * @return The draft settings for the user
      */
     @GetMapping("")
-    public ResponseEntity<Object> getUserDrafts(
+    public ResponseEntity<List<DraftDTO>> getUserDrafts(
             @RequestParam(name = "user_id", required = true) String userId) {
-        List<FootballDraftSettingsDTO> footballDrafts = footballDrafRepository
-            .getDrafts(Integer.parseInt(userId));
-        final HashMap<String, Object> drafts = new HashMap<String, Object>();
-        drafts.put("footballDrafts", footballDrafts);
+        List<DraftDTO> footballDrafts = footballDraftRepository
+                .getDrafts(Integer.parseInt(userId));
+        List<DraftDTO> drafts = new ArrayList<DraftDTO>(footballDrafts);
         return ResponseEntity.ok().body(drafts);
     }
 
@@ -57,9 +51,9 @@ public class DraftController {
      */
     @PostMapping("football-drafts")
     public ResponseEntity<Object> createDraft(
-            @RequestBody FootballDraftCreationDTO createDraftRequest) {
+            @RequestBody FootballDraftCreationRequestDTO createDraftRequest) {
         try {
-            createFootballDraftService.createDraft(createDraftRequest);
+            footballDraftRepository.createDraft(createDraftRequest);
             return ResponseEntity.ok().body("Draft created successfully.");
         } catch (Exception e) {
             return ResponseEntity

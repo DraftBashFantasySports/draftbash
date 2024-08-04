@@ -1,0 +1,23 @@
+.draftpage {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 30px;
+    background-color: var(--black);
+    overflow: auto;
+}
+
+.draftpage.full {
+    max-height: 26vh;
+}
+
+.draftpage.closed {
+    max-height: 100vh;
+}
+
+.draftpage.open {
+    max-height: 50vh;
+}
+
+.draftpage .body {
+    padding: 20px 0;
+}

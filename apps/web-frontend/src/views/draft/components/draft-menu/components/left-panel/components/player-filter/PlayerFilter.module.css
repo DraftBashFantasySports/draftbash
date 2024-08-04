@@ -1,0 +1,41 @@
+.positionfilter {
+    display: flex;
+    align-self: center;
+    border-radius: 25px;
+    border: 2px solid var(--grey3);
+    background-color: var(--black1);
+}
+
+.positionfilter .option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.positionfilter .selected {
+    background-color: var(--secondary);
+}
+
+.positionfilter .selected .position, .positionfilter .selected .positioncount {
+    color: var(--primary);
+}
+
+.positionfilter .position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    margin-bottom: -4px;
+    color: var(--grey);
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+}
+
+.positionfilter .positioncount {
+    color: var(--grey);
+    font-size: var(--font-xxsmall);
+    font-weight: 300;
+}

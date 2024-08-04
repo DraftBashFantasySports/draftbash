@@ -1,0 +1,131 @@
+.invitesbtn {
+    width: 140px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--grey2);
+    color: var(--white);
+    cursor: pointer;
+    border: none;
+}
+
+.modal {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(255 255 255 / 33%);
+    border: none;
+}
+
+.modal .content {
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 500px;
+    height: 70%;
+    max-height: 625px;
+    max-width: 1000px;
+    background-color: var(--grey4);
+    border: 1px solid black;
+}
+
+.modal .content header {
+    position: relative;
+    padding: 10px 15px;
+}
+
+.modal .content header input {
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--primary);
+    border: none;
+    padding: 8px 16px;
+    caret-color: var(--grey);
+    color: var(--grey);
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+}
+
+.modal .content input::placeholder {
+    color: var(--grey);
+}
+
+.modal .content .searchicon {
+    color: white;
+    position: absolute;
+    top: 22px;
+    right: 25px;
+}
+
+.modal .content .emptysearch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.modal .content .emptysearch p {
+    color: var(--grey);
+    font-size: var(--font-small);
+    font-weight: 500;
+}
+
+.modal .content .emptysearch .searchicon {
+    position: static;
+    margin-bottom: 20px;
+    color: var(--grey);
+    font-size: var(--font-xlarge);
+}
+
+.modal .content ul {
+    overflow-y: auto;
+}
+
+.modal .content ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal .content ul li:hover {
+    background-color: var(--primary) !important;
+}
+
+.modal .content ul li p {
+    color: var(--white);
+    font-size: var(--font-small);
+    font-weight: 500;
+}
+
+.modal .content ul li:nth-child(odd) {
+    background-color: var(--grey3);
+}
+
+.modal .content ul li .sent {
+    color: var(--grey);
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    padding-top: 3px;
+}
+
+.modal .content ul li button {
+    padding: 3px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary);
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+}

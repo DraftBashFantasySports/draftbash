@@ -9,7 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
-import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import com.draftbash.features.users.exceptions.UserValidationException;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
@@ -64,7 +64,7 @@ public class CreateUserServiceTest {
 
         // Mock authentication token service
         when(authenticationTokenService
-            .generateToken(any(UserDTO.class)))
+            .generateToken(any(UserCredentialsDTO.class)))
             .thenReturn("authToken");
 
         // Act
@@ -84,7 +84,7 @@ public class CreateUserServiceTest {
 
         // Mock repository method to return a user with the same username
         when(userRepository.getUserByUsername("existingUser"))
-                .thenReturn(Optional.of(new UserDTO(
+                .thenReturn(Optional.of(new UserCredentialsDTO(
                     1, "existingUser", "test@example.com", "password")));
 
         // Act and Assert

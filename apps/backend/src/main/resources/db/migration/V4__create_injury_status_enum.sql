@@ -1,0 +1,1 @@
+CREATE TYPE injury_status AS ENUM ('healthy', 'questionable', 'doubtful', 'out', 'probable', 'suspended', 'injured_reserve');

@@ -6,6 +6,7 @@ import com.draftbash.features.drafts.utils.draftorders.SnakeDraftOrderGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 /**
  * This class contains unit tests for the SnakeOrderGeneratorService class.
  */

@@ -9,7 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.draftbash.features.users.dtos.UserCreationDTO;
-import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import com.draftbash.features.users.interfaces.IPasswordEncryptionService;
 import com.draftbash.features.users.interfaces.IUserRepository;
@@ -47,7 +47,7 @@ public class AuthenticateUserServiceTest {
         // Mock behavior of userRepository
         when(userRepository.getUserByUsername("fakeUsername"))
                 .thenReturn(Optional.of(
-                        new UserDTO(
+                        new UserCredentialsDTO(
                                 1, "fakeUsername", "email@example.com",
                                 "$2a$10$2sfrm2v7hkT/WPWa3mfNQekmMZIa9iW7yZIT77rD9wDPowZggNp0y")));
         when(userRepository.getUserByEmail("email@example.com"))
@@ -56,7 +56,7 @@ public class AuthenticateUserServiceTest {
                 "Password123!",
                 "$2a$10$2sfrm2v7hkT/WPWa3mfNQekmMZIa9iW7yZIT77rD9wDPowZggNp0y"))
                 .thenReturn(true);
-        when(authenticationTokenService.generateToken(any(UserDTO.class)))
+        when(authenticationTokenService.generateToken(any(UserCredentialsDTO.class)))
                 .thenReturn("fakeToken");
 
         // Perform the test
@@ -68,7 +68,7 @@ public class AuthenticateUserServiceTest {
         assertEquals("fakeToken", AUTH_TOKEN);
         verify(
                 authenticationTokenService,
-                times(1)).generateToken(any(UserDTO.class));
+                times(1)).generateToken(any(UserCredentialsDTO.class));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class AuthenticateUserServiceTest {
                             "incorrectUsername", "email@example.com", "Password123!")));
         verify(
                 authenticationTokenService,
-                never()).generateToken(any(UserDTO.class));
+                never()).generateToken(any(UserCredentialsDTO.class));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class AuthenticateUserServiceTest {
                                 "fakeUsername", "incorrectemail@example.com", "Password123!")));
         verify(
                 authenticationTokenService,
-                never()).generateToken(any(UserDTO.class));
+                never()).generateToken(any(UserCredentialsDTO.class));
     }
 
     @Test
@@ -114,7 +114,8 @@ public class AuthenticateUserServiceTest {
         // Mock behavior of userRepository
         when(userRepository.getUserByUsername("fakeUsername"))
                 .thenReturn(Optional.of(
-                        new UserDTO(1, "fakeUsername", "email@example.com", "Password123!")));
+                        new UserCredentialsDTO(1, "fakeUsername", 
+                        "email@example.com", "Password123!")));
         when(userRepository.getUserByEmail("email@example.com"))
                 .thenReturn(Optional.empty());
         when(passwordEncryptionService.verify(
@@ -130,6 +131,6 @@ public class AuthenticateUserServiceTest {
                                 "fakeUsername", "email@example.com", "IncorrectPassword123!")));
         verify(
                 authenticationTokenService,
-                never()).generateToken(any(UserDTO.class));
+                never()).generateToken(any(UserCredentialsDTO.class));
     }
 }

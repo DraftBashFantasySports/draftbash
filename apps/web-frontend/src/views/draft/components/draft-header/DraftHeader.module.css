@@ -1,0 +1,79 @@
+.draftheader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    min-width: 1230px;
+}
+
+.draftheader .arrowicon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    color: var(--grey1);
+    cursor: pointer;
+}
+
+.draftheader .title {
+    padding: 20px;
+    margin-left: 60px;
+}
+
+.draftheader .title h1 {
+    height: 25px;
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--white);
+}
+
+.draftheader .title p {
+    font-size: var(--font-xsmall);
+    color: var(--grey);
+}
+
+.draftheader .startdraftbtn {
+    height: 50px;
+    padding: 0 40px;
+    border-radius: 30px;
+    background-color: var(--secondary);
+    border: none;
+    font-size: var(--font-small);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.draftheader .settings {
+    display: flex;
+    gap: 5px;
+    height: 50px;
+    margin-right: 60px;
+}
+
+.draftheader .settings .invitebtn {
+    height: 100%;
+    padding: 0 20px;
+    border-radius: 5px;
+    background-color: var(--grey2);
+    border: none;
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.draftheader .settings .settingsicon {
+    width: 50px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--grey2);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.draftheader .status p {
+    width: 240px;
+    font-size: var(--font-large);
+    color: var(--secondary);
+}

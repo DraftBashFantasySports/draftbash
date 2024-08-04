@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserCreationRequest } from "../../services/api/users/types";
+import { UserCreationRequest } from "types/users";
 import { UserApi } from "../../services/api/users/UserApi";
 import { TokenStorage } from "../../services/security/TokenStorage";
 import { useNavigate } from "react-router-dom";

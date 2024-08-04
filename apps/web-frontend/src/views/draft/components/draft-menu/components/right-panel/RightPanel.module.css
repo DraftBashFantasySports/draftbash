@@ -1,0 +1,53 @@
+.rightpanel {
+    z-index: 2;
+    width: 40%;
+    height: 100%;
+    background-color: var(--grey4);
+    box-shadow: 0 0 20px 0 rgba(0 0 0 / 100%);
+}
+
+.rightpanel header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightpanel header h3 {
+    padding: 10px;
+    color: var(--secondary);
+    background-color: rgba(255 255 255 / 15%);
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rightpanel header h3.queueselected.on {
+    background-color: var(--grey4);
+}
+
+.rightpanel header h3.rosterselected.on {
+    background-color: var(--grey4);
+}
+
+.rightpanel header h3.chatselected.on {
+    background-color: var(--grey4);
+}
+
+.rightpanel header h3:first-child.queueselected, .rightpanel header h3:nth-child(2).queueselected {
+    box-shadow: 5px 0 5px -4px rgba(0 0 0 / 100%);
+}
+
+.rightpanel header h3:nth-child(2).rosterselected {
+    box-shadow: -5px 0 5px -4px rgba(0 0 0 / 100%), /* Left side shadow */
+                5px 0 5px -4px rgba(0 0 0 / 100%);
+}
+
+.rightpanel header h3:nth-child(3).chatselected, .rightpanel header h3:nth-child(2).chatselected {
+    box-shadow: -5px 0 5px -4px rgba(0 0 0 / 100%);
+}
+
+.rightpanel .content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(100% - 50px);
+}

@@ -11,11 +11,18 @@
   --grey1: #A0A0AF;
   --grey2: #6A6A74;
   --grey3: #3d3d42;
+  --grey4: #303033;
   --white: #FFF;
   --white1: #EAEAFF;
-  --green: #0BE396;
+  --green: #1dc98d;
+  --red: #FF4D4D;
+  --blue: #0CF;
+  --yellow: #FFD700;
+  --orange: #E26A0B;
+  --pink: #fc61ff;
 
   /* Font sizes */
+  --font-xxsmall: 12px;
   --font-xsmall: 15px;
   --font-small: 20px;
   --font-medium: 30px;
@@ -38,4 +45,8 @@
 a {
   color: black;
   text-decoration: none;
+}
+
+body {
+  background-color: var(--black);
 }

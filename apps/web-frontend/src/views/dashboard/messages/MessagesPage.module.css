@@ -1,6 +1,7 @@
 .heading {
     display: flex;
-    align-items: center; 
+    align-items: center;
+    gap: 20px;
 }
 
 .heading h1 {
@@ -9,7 +10,6 @@
 }
 
 .heading p {
-    margin-left: 20px;
     font-size: var(--font-xsmall);
     color: var(--grey);
 }

@@ -1,6 +1,6 @@
 package com.draftbash.features.users.services;
 
-import com.draftbash.features.users.dtos.UserDTO;
+import com.draftbash.features.users.dtos.UserCredentialsDTO;
 import com.draftbash.features.users.interfaces.IAuthenticationTokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -25,12 +25,12 @@ public class AuthenticationTokenService implements IAuthenticationTokenService {
     }
 
     @Override
-    public String generateToken(UserDTO appUser) {
+    public String generateToken(UserCredentialsDTO user) {
         return Jwts.builder()
-            .setSubject(appUser.username()) // Use username as the subject
-            .claim("id", appUser.id()) // Add id as a custom claim
-            .claim("username", appUser.username()) // Add username as a custom claim
-            .claim("email", appUser.email()) // Add email as a custom claim
+            .setSubject(user.username()) // Use username as the subject
+            .claim("id", user.id()) // Add id as a custom claim
+            .claim("username", user.username()) // Add username as a custom claim
+            .claim("email", user.email()) // Add email as a custom claim
             .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
             .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
             .compact();
@@ -43,7 +43,7 @@ public class AuthenticationTokenService implements IAuthenticationTokenService {
      * @return a HashMap with user details if the token is valid, null otherwise
      */
     @Override
-    public UserDTO verify(String authenticationToken) {
+    public UserCredentialsDTO verify(String authenticationToken) {
         try {
             Claims claims = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
@@ -51,7 +51,7 @@ public class AuthenticationTokenService implements IAuthenticationTokenService {
                 .parseClaimsJws(authenticationToken)
                 .getBody();
             
-            return new UserDTO(
+            return new UserCredentialsDTO(
                 (Integer) claims.get("id"),
                 (String) claims.get("username"),
                 (String) claims.get("email"),

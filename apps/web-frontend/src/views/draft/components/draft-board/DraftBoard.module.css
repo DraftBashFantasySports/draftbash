@@ -1,0 +1,39 @@
+.draftboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.draftboard .teamclaims {
+    z-index: 3;
+    position: sticky;
+    top: -15px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.draftboard .teamclaim {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 123px;
+}
+
+.draftboard .teamclaim button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var(--secondary);
+    border: none;
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.draftboard .teamclaim h4 {
+    margin: 10px;
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--white);
+}
