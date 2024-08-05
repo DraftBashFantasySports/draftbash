@@ -7,7 +7,6 @@ import { MessagesPage } from "views/dashboard/messages/MessagesPage";
 import { MockDraftsPage } from "views/dashboard/mock-drafts/MockDraftsPage";
 import { DraftPage } from "views/draft/DraftPage";
 
-// Entry point for the application
 export const App = () => {
     return (
         <GlobalProvider>
