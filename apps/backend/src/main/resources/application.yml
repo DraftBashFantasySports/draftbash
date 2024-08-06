@@ -53,10 +53,12 @@ server:
   ssl:
     enabled: true
     key-store: classpath:keystore.p12
-    key-store-password: ${SSL_KEYSTORE_PASSWORD}
+    key-store-password: 456Steve!
     key-store-type: PKCS12
     key-alias: tomcat
-    key-password: ${SSL_KEYSTORE_PASSWORD}
+    key-password: 456Steve!
+    protocol: TLS
+    enabled-protocols: TLSv1.2
 spring:
   config:
     activate:
