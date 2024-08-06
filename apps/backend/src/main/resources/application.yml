@@ -57,8 +57,6 @@ server:
     key-store-type: PKCS12
     key-alias: tomcat
     key-password: 456Steve!
-    protocol: TLS
-    enabled-protocols: TLSv1.2
 spring:
   config:
     activate:
