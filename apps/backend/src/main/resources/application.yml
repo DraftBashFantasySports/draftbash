@@ -50,7 +50,6 @@ spring:
 
 # Production profile configuration
 server:
-  port: 443
   ssl:
     enabled: true
     key-store: classpath:keystore.p12
