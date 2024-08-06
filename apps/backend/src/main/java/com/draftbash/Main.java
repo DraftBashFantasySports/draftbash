@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Main class to start the Spring Boot application with basic configurations.
+ * Main class to start the Spring Boot application.
  */
 @SpringBootApplication
 @RestController
