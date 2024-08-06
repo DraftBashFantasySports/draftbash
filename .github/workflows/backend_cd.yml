@@ -15,6 +15,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up SSL
+        run: |
+            echo "${{ secrets.SSL_PRIVATE_KEY }}" >> ./apps/backend/src/main/resources/private_key.pem
+            echo "${{ secrets.SSL_CERTIFICATE }}" >> ./apps/backend/src/main/resources/certificate.pem
+            cd ./apps/backend/src/main/resources && openssl pkcs12 -export -in certificate.pem -inkey private_key.pem -out keystore.p12 -name draftbash_ssl_cert -password pass:${{ secrets.SSL_PASSWORD }}
+
       - name: Install Docker
         run: |
           sudo apt-get update
@@ -46,7 +52,9 @@ jobs:
             sudo docker run -d --name app -p 80:8080 \
               -e SPRING_PROFILES_ACTIVE=prod \
               -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+              -e SSL_KEYSTORE_PASSWORD=${{ secrets.SSL_PASSWORD }} \
               -e DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} \
               -e DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }} \
               -e DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} \
               ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+              
