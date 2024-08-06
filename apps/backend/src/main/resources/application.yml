@@ -56,7 +56,7 @@ server:
     key-store: classpath:keystore.p12
     key-store-password: ${SSL_KEYSTORE_PASSWORD}
     key-store-type: PKCS12
-    key-alias: draftbash_ssl_cert
+    key-alias: tomcat
     key-password: ${SSL_KEYSTORE_PASSWORD}
 spring:
   config:
