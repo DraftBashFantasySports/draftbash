@@ -583,7 +583,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
      */
     @Override
     @Transactional
-    public void createDraft(FootballDraftCreationRequestDTO draftSettings) {
+    public int createDraft(FootballDraftCreationRequestDTO draftSettings) {
         IDraftOrderGenerator draftOrderGenerator = draftOrderGeneratorFactory
                 .getDraftOrderGenerator(draftSettings.settings().pickOrderFormat());
         int playersPerTeam = draftSettings.settings().quarterbackLimit()
@@ -669,6 +669,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
             draftPickParams.add(parameterSource);
         }
         db.batchUpdate(DRAFT_PICKS_SQL, draftPickParams.toArray(new MapSqlParameterSource[0]));
+        return draftId;
     }
 
     @Override

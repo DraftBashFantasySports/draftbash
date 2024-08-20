@@ -6,5 +6,5 @@ import com.draftbash.features.drafts.dtos.football.FootballDraftCreationRequestD
  * Interface for football draft repositories.
  */
 public interface IFootballDraftRepository extends IDraftRepository {
-    public void createDraft(FootballDraftCreationRequestDTO draftSettings);
+    public int createDraft(FootballDraftCreationRequestDTO draftSettings);
 }

@@ -107,7 +107,7 @@ main {
 .rightcolumn form {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 10px;
     margin-top: 40px;
     width: 100%;
     min-width: 300px;
@@ -128,4 +128,10 @@ main {
 
 .rightcolumn form button:hover {
     box-shadow: 0 4px 8px rgba(0 4 8 / 50%);
+}
+
+.rightcolumn form .error {
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    color: var(--red);
 }

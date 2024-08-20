@@ -4,7 +4,9 @@ import com.draftbash.features.drafts.dtos.DraftDTO;
 import com.draftbash.features.drafts.dtos.football.FootballDraftCreationRequestDTO;
 import com.draftbash.features.drafts.repositories.FootballDraftRepository;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,8 +55,10 @@ public class DraftController {
     public ResponseEntity<Object> createDraft(
             @RequestBody FootballDraftCreationRequestDTO createDraftRequest) {
         try {
-            footballDraftRepository.createDraft(createDraftRequest);
-            return ResponseEntity.ok().body("Draft created successfully.");
+            int draftId = footballDraftRepository.createDraft(createDraftRequest);
+            Map<String, Object> response = new HashMap<>();
+            response.put("draftId", draftId);
+            return ResponseEntity.ok().body(response);
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -12,9 +12,10 @@ export class DraftApi {
         }
     }
 
-    public static async createFootballDraft(request: FootballDraftCreationRequest, ): Promise<void> {
+    public static async createFootballDraft(request: FootballDraftCreationRequest, ): Promise<number> {
         try {
-            await apiClient.post("/drafts/football-drafts", request);
+            const response = await apiClient.post("/drafts/football-drafts", request);
+            return response.data.draftId;
         } catch (error) {
             throw error;
         }

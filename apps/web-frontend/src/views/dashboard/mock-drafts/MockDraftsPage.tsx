@@ -73,9 +73,6 @@ export const MockDraftsPage = () => {
                         >
                             Create Football Draft
                         </button>
-                        <button type="button" className={styles.basketballdraftbtn}>
-                            Create Basketball Draft
-                        </button>
                     </div>
                 }
             />

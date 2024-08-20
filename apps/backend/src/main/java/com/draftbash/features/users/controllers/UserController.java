@@ -82,8 +82,10 @@ public class UserController {
     public ResponseEntity<Object> createUser(@RequestBody UserCreationDTO createUserRequest) {
         try {
             String authenticationToken = createUserService.createUser(createUserRequest);
-            Map<String, String> response = new HashMap<>();
+            UserCredentialsDTO user = authenticationTokenService.verify(authenticationToken);
+            Map<String, Object> response = new HashMap<>();
             response.put("jwtToken", authenticationToken);
+            response.put("user", user);
             return ResponseEntity.ok().body(response);
         } catch (UserValidationException userValidationErrors) {
             return ResponseEntity

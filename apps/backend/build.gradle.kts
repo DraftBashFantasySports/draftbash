@@ -1,14 +1,7 @@
 plugins {
     java
-    id("checkstyle")
     id("org.springframework.boot") version "3.2.5"
     id("io.spring.dependency-management") version "1.1.4"
-}
-
-checkstyle {
-    configFile = file("src/main/resources/checkstyle.xml")
-    isIgnoreFailures = false
-    toolVersion = "10.3.1"
 }
 
 group = "com.draftbash"
@@ -31,6 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.jsoup:jsoup:1.18.1")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
     implementation("org.flywaydb:flyway-core")

@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const TextInput = ({ placeholder, label, type = "text", handleOnChange }: Props) => {
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(type === "password");
     return (
         <div className={`${styles.textinput}`}>
             <label>{label}</label>

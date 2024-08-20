@@ -15,7 +15,6 @@ public class FootballFantasyPointCalculator {
     public FootballFantasyPointCalculator(String scoringType) {
         if (scoringType.equals("standard")) {
             scoringWeights.put("receptions", 0.0);
-            System.out.println(scoringWeights);
         } else if (scoringType.equals("ppr")) {
             scoringWeights.put("receptions", 1.0);
         } else if (scoringType.equals("half_ppr")) {
