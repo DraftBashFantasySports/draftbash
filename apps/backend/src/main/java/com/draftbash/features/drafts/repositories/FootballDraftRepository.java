@@ -3,20 +3,20 @@ package com.draftbash.features.drafts.repositories;
 import com.draftbash.features.drafts.dtos.DraftDTO;
 import com.draftbash.features.drafts.dtos.DraftPickDTO;
 import com.draftbash.features.drafts.dtos.DraftUserDTO;
-import com.draftbash.features.drafts.dtos.PlayerDTO;
 import com.draftbash.features.drafts.dtos.QueuedPlayerDTO;
 import com.draftbash.features.drafts.dtos.football.FootballDraftCreationRequestDTO;
 import com.draftbash.features.drafts.dtos.football.FootballDraftDTO;
 import com.draftbash.features.drafts.dtos.football.FootballDraftSettingsDTO;
-import com.draftbash.features.drafts.dtos.football.FootballPlayerDTO;
-import com.draftbash.features.drafts.dtos.football.FootballTeamDTO;
-import com.draftbash.features.drafts.dtos.football.KickerProjection;
 import com.draftbash.features.drafts.dtos.football.QueuedFootballPlayerDTO;
-import com.draftbash.features.drafts.dtos.football.SkillPlayerProjection;
-import com.draftbash.features.drafts.dtos.football.TeamDefenseProjection;
 import com.draftbash.features.drafts.interfaces.IDraftOrderGenerator;
 import com.draftbash.features.drafts.interfaces.IFootballDraftRepository;
 import com.draftbash.features.drafts.utils.draftorders.DraftOrderGeneratorFactory;
+import com.draftbash.features.players.dtos.PlayerDTO;
+import com.draftbash.features.players.dtos.football.FootballPlayerDTO;
+import com.draftbash.features.players.dtos.football.FootballTeamDTO;
+import com.draftbash.features.players.dtos.football.KickerProjection;
+import com.draftbash.features.players.dtos.football.SkillPlayerProjection;
+import com.draftbash.features.players.dtos.football.TeamDefenseProjection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -186,6 +186,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
                     rowSets.getInt("queued_by_user_id"),
                     new FootballPlayerDTO(
                         rowSets.getInt("player_id"),
+                        0,
                         "footballPlayer",
                         0,
                         0,
@@ -291,7 +292,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
             SELECT *
             FROM (
                 SELECT p.id, p.first_name, p.last_name, p.age, p.height, p.weight, p.injury_status,
-                    p.years_experience, p.headshot_url, n.is_quarterback, n.is_running_back, 
+                    p.years_experience, p.headshot_url, p.rotowire_id n.is_quarterback, n.is_running_back, 
                     n.ppr_adp, n.half_ppr_adp, n.standard_adp, n.is_wide_receiver, n.is_tight_end, 
                     n.is_kicker, n.is_team_defense, t.id AS team_id, t.team_name, t.team_city, 
                     t.team_abbreviation, t.conference, t.division, t.wins, t.losses, t.ties, 
@@ -331,6 +332,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
         List<PlayerDTO> players = db.query(SQL, params, (rowSets, rowNum) -> {
             return new FootballPlayerDTO(
                     rowSets.getInt("id"),
+                    rowSets.getInt("rotowire_id"),
                     "footballPlayer",
                     rowSets.getInt("standard_adp"),
                     rowSets.getInt("ppr_adp"),
@@ -678,7 +680,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
                 SELECT dp.picked_by_team_number, dp.pick_number,
                     p.first_name, p.last_name, p.age, p.height,
                     p.weight, p.injury_status, p.years_experience, 
-                    p.headshot_url, np.player_id, np.is_quarterback,
+                    p.headshot_url, p.rotowire_id, np.player_id, np.is_quarterback,
                     np.is_running_back, np.is_wide_receiver, np.ppr_adp, 
                     np.half_ppr_adp, np.standard_adp, np.is_tight_end, 
                     np.is_kicker, np.is_team_defense, np.team_id, t.team_name, 
@@ -712,6 +714,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
             if (rowSets.getObject("player_id") != null) {
                 FootballPlayerDTO footballPlayer = new FootballPlayerDTO(
                         rowSets.getInt("player_id"),
+                        rowSets.getInt("rotowire_id"),
                         "footballPlayer",
                         rowSets.getInt("standard_adp"),
                         rowSets.getInt("ppr_adp"),

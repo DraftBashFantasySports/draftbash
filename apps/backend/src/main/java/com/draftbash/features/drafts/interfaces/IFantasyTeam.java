@@ -1,7 +1,8 @@
 package com.draftbash.features.drafts.interfaces;
 
 import com.draftbash.features.drafts.dtos.DraftSettingsDTO;
-import com.draftbash.features.drafts.dtos.PlayerDTO;
+import com.draftbash.features.players.dtos.PlayerDTO;
+
 import java.util.HashMap;
 import java.util.List;
 

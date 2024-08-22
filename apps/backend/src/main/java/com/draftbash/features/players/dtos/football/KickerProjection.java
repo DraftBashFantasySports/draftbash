@@ -1,4 +1,4 @@
-package com.draftbash.features.drafts.dtos.football;
+package com.draftbash.features.players.dtos.football;
 
 /**
  * This dto contains the attributes for an nfl kicker.

@@ -1,4 +1,4 @@
-package com.draftbash.features.drafts.dtos.football;
+package com.draftbash.features.players.dtos.football;
 
 /**
  * This dto contains the information for an nfl team.

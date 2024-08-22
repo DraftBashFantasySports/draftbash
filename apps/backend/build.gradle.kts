@@ -25,6 +25,8 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
     implementation("org.jsoup:jsoup:1.18.1")
+    implementation("org.seleniumhq.selenium:selenium-java:4.14.1")
+    implementation("io.github.bonigarcia:webdrivermanager:5.5.3")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
     implementation("org.flywaydb:flyway-core")

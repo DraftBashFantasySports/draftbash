@@ -1,10 +1,10 @@
 package com.draftbash.features.common.utils.fantasyteams;
 
 import com.draftbash.features.drafts.dtos.DraftSettingsDTO;
-import com.draftbash.features.drafts.dtos.PlayerDTO;
 import com.draftbash.features.drafts.dtos.football.FootballDraftSettingsDTO;
-import com.draftbash.features.drafts.dtos.football.FootballPlayerDTO;
 import com.draftbash.features.drafts.interfaces.IFantasyTeam;
+import com.draftbash.features.players.dtos.PlayerDTO;
+import com.draftbash.features.players.dtos.football.FootballPlayerDTO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

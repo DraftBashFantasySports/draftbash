@@ -3,7 +3,8 @@ package com.draftbash.features.drafts.interfaces;
 import com.draftbash.features.drafts.dtos.DraftDTO;
 import com.draftbash.features.drafts.dtos.DraftPickDTO;
 import com.draftbash.features.drafts.dtos.DraftUserDTO;
-import com.draftbash.features.drafts.dtos.PlayerDTO;
+import com.draftbash.features.players.dtos.PlayerDTO;
+
 import java.util.List;
 
 /**

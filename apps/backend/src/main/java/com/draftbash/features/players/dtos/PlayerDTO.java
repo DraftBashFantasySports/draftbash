@@ -1,6 +1,6 @@
-package com.draftbash.features.drafts.dtos;
+package com.draftbash.features.players.dtos;
 
-import com.draftbash.features.drafts.dtos.football.FootballPlayerDTO;
+import com.draftbash.features.players.dtos.football.FootballPlayerDTO;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -17,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public interface PlayerDTO {
     int id();
+
+    int rotowireId();
 
     String type();
 

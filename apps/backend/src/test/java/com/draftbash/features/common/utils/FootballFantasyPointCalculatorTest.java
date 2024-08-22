@@ -3,7 +3,6 @@ package com.draftbash.features.common.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.draftbash.features.common.utils.fantasypointcalculators.FootballFantasyPointCalculator;
-import com.draftbash.features.gamelogs.service.InsertFootballPlayerGameLogsService;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,13 +12,10 @@ public class FootballFantasyPointCalculatorTest {
 
     private FootballFantasyPointCalculator footballFantasyPointCalculator;
 
-    private InsertFootballPlayerGameLogsService insertFootballPlayerGameLogsService;
-
     @Test
     public void testSkillPlayerCalculate_StandardScoring() {
         footballFantasyPointCalculator = new FootballFantasyPointCalculator("standard");
-        //insertFootballPlayerGameLogsService = new InsertFootballPlayerGameLogsService();
-        //insertFootballPlayerGameLogsService.insertGameLogs();
+
         double fantasyPoints = footballFantasyPointCalculator
                 .skillPlayerCalculate(0, 0, 0, 50, 1, 10, 100, 1, 1, 1);
         assertEquals(27, fantasyPoints);

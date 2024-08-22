@@ -1,12 +1,13 @@
-package com.draftbash.features.drafts.dtos.football;
+package com.draftbash.features.players.dtos.football;
 
-import com.draftbash.features.drafts.dtos.PlayerDTO;
+import com.draftbash.features.players.dtos.PlayerDTO;
 
 /**
  * This dto contains the limits for each position in a football draft.
  */
 public record FootballPlayerDTO(
     int id,
+    int rotowireId,
     String type,
     int standardAdp,
     int pprAdp,

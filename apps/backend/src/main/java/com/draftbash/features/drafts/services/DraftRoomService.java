@@ -6,9 +6,10 @@ import com.draftbash.features.drafts.dtos.DraftMessageDTO;
 import com.draftbash.features.drafts.dtos.DraftPickDTO;
 import com.draftbash.features.drafts.dtos.DraftSettingsDTO;
 import com.draftbash.features.drafts.dtos.DraftUserDTO;
-import com.draftbash.features.drafts.dtos.PlayerDTO;
 import com.draftbash.features.drafts.interfaces.IDraftRepository;
 import com.draftbash.features.drafts.interfaces.IFantasyTeam;
+import com.draftbash.features.players.dtos.PlayerDTO;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

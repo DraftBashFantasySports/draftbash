@@ -3,8 +3,8 @@ package com.draftbash.features.common.utils.fantasyteams;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.draftbash.features.drafts.dtos.PlayerDTO;
-import com.draftbash.features.drafts.dtos.football.FootballPlayerDTO;
+import com.draftbash.features.players.dtos.PlayerDTO;
+import com.draftbash.features.players.dtos.football.FootballPlayerDTO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +26,7 @@ public class FantasyFootballTeamTest {
         for (String position : playerPositions) {
             try {
                 userFootballTeam.addPlayer(new FootballPlayerDTO(
-                        playerId, null, 0, 0, 0,
+                        playerId, 0, null, 0, 0, 0,
                         null, null, 0, 0, 0, null, 0,
                         position.contains("quarterback"), position.contains("runningBack"),
                         position.contains("wideReceiver"),
@@ -41,12 +41,12 @@ public class FantasyFootballTeamTest {
         }
         List<PlayerDTO> players = new ArrayList<>();
         PlayerDTO wideReceiver = new FootballPlayerDTO(
-                3, null, 0, 0, 0,
+                3, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 false, false, true, false, false,
                 false, null, null, null, null, null);
         PlayerDTO runningBack = new FootballPlayerDTO(
-                4, null, 0, 0, 0,
+                4, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 false, true, false, false, false,
                 false, null, null, null, null, null);
@@ -71,35 +71,35 @@ public class FantasyFootballTeamTest {
         expectedPlayers.put("flex", new FootballPlayerDTO[1]);
         expectedPlayers.put("bench", new FootballPlayerDTO[1]);
         expectedPlayers.get("runningBack")[0] = new FootballPlayerDTO(
-                1, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                1, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 false, true, false, false, false, false, null,
                 null, null, null, null);
         expectedPlayers.get("wideReceiver")[0] = new FootballPlayerDTO(
-                2, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                2, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 false, false, true, false, false, false, null,
                 null, null, null, null);
         expectedPlayers.get("flex")[0] = new FootballPlayerDTO(
-                3, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                3, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 true, false, false, true, false, false, null,
                 null, null, null, null);
         expectedPlayers.get("bench")[0] = new FootballPlayerDTO(
-                4, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                4, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 true, false, false, false, false, false,
                 null, null, null, null, null);
         expectedPlayers.get("tightEnd")[0] = new FootballPlayerDTO(
-                5, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                5, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 false, false, false, true, false, false,
                 null, null, null, null, null);
         expectedPlayers.get("quarterback")[0] = new FootballPlayerDTO(
-                6, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                6, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 true, false, false, true, false, false,
                 null, null, null, null, null);
         expectedPlayers.get("kicker")[0] = new FootballPlayerDTO(
-                7, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
+                7, 0, null, 0, 0, 0, null, null, 0, 0, 0, null, 0,
                 false, false, false, false, true, false,
                 null, null, null, null, null);
         expectedPlayers.get("teamDefense")[0] = new FootballPlayerDTO(
-                8, null, 0, 0, 0, null, null,
+                8, 0, null, 0, 0, 0, null, null,
                 0, 0, 0, null, 0, false, false, false,
                 false, false, true, null, null, null, null, null);
         String[] playerPositions = { 
@@ -108,7 +108,7 @@ public class FantasyFootballTeamTest {
         int playerId = 1;
         for (String position : playerPositions) {
             userFootballTeam.addPlayer(new FootballPlayerDTO(
-                    playerId, null, 0, 0, 0,
+                    playerId, 0, null, 0, 0, 0,
                     null, null, 0, 0, 0, null, 0,
                     position.contains("quarterback"), position.contains("runningBack"),
                     position.contains("wideReceiver"),
@@ -133,27 +133,27 @@ public class FantasyFootballTeamTest {
         expectedPlayers.put("flex", new FootballPlayerDTO[1]);
         expectedPlayers.put("bench", new FootballPlayerDTO[1]);
         expectedPlayers.get("quarterback")[1] = new FootballPlayerDTO(
-                1, null, 0, 0, 0,
+                1, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 true, false, false,
                 false, false, false, null, null, null, null, null);
         expectedPlayers.get("tightEnd")[0] = new FootballPlayerDTO(
-                2, null, 0, 0, 0,
+                2, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 true, false, false,
                 true, false, false, null, null, null, null, null);
         expectedPlayers.get("bench")[0] = new FootballPlayerDTO(
-                3, null, 0, 0, 0,
+                3, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 true, false, false,
                 false, false, false, null, null, null, null, null);
         expectedPlayers.get("flex")[0] = new FootballPlayerDTO(
-                4, null, 0, 0, 0,
+                4, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 true, false, false,
                 true, false, false, null, null, null, null, null);
         expectedPlayers.get("quarterback")[0] = new FootballPlayerDTO(
-                5, null, 0, 0, 0,
+                5, 0, null, 0, 0, 0,
                 null, null, 0, 0, 0, null, 0,
                 true, false, false,
                 false, false, false, null, null, null, null, null);
@@ -163,7 +163,7 @@ public class FantasyFootballTeamTest {
         int playerId = 1;
         for (String position : playerPositions) {
             userFootballTeam.addPlayer(new FootballPlayerDTO(
-                    playerId, null, 0, 0, 0,
+                    playerId, 0, null, 0, 0, 0,
                     null, null, 0, 0, 0, null, 0,
                     position.contains("quarterback"), 
                     position.contains("runningBack"),
@@ -186,7 +186,7 @@ public class FantasyFootballTeamTest {
         for (String position : playerPositions) {
             try {
                 userFootballTeam.addPlayer(new FootballPlayerDTO(
-                        playerId, null, 0, 0, 0,
+                        playerId, 0, null, 0, 0, 0,
                         null, null, 0, 0, 0, null, 0,
                         position.contains("quarterback"), position.contains("runningBack"),
                         position.contains("wideReceiver"),
