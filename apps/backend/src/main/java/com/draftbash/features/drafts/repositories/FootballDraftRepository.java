@@ -292,7 +292,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
             SELECT *
             FROM (
                 SELECT p.id, p.first_name, p.last_name, p.age, p.height, p.weight, p.injury_status,
-                    p.years_experience, p.headshot_url, p.rotowire_id n.is_quarterback, n.is_running_back, 
+                    p.years_experience, p.headshot_url, p.rotowire_id, n.is_quarterback, n.is_running_back, 
                     n.ppr_adp, n.half_ppr_adp, n.standard_adp, n.is_wide_receiver, n.is_tight_end, 
                     n.is_kicker, n.is_team_defense, t.id AS team_id, t.team_name, t.team_city, 
                     t.team_abbreviation, t.conference, t.division, t.wins, t.losses, t.ties, 
