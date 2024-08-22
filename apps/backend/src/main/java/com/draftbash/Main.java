@@ -39,7 +39,7 @@ public class Main {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("http://localhost:5173", "draftbashfantasy.com")
+                    .allowedOrigins("http://localhost:5173", "https://draftbashfantasy.com")
                     .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };

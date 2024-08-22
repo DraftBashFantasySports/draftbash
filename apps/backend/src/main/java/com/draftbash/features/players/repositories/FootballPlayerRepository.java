@@ -51,7 +51,7 @@ public class FootballPlayerRepository implements IFootballPlayerRepository {
         params.put("url", news.url());
         params.put("date", Date.valueOf(news.date()));
 
-        //db.update(SQL, params);
+        db.update(SQL, params);
     }
 
     @Override
