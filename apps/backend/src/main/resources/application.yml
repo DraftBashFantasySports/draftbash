@@ -26,9 +26,9 @@ spring:
   flyway:
     locations: classpath:db/migration,classpath:db/devmigration
   datasource:
-    url: jdbc:postgresql://ep-polished-night-a5s6xqxo.us-east-2.aws.neon.tech/neondb?sslmode=require
-    username: neondb_owner
-    password: uzGI7AkaBP6H
+    url: jdbc:postgresql://0.0.0.0:5332/draftbash
+    username: postgres
+    password: devpassword
 
 ---
 
