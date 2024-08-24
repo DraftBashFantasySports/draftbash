@@ -5,9 +5,11 @@ import { useDraftContext } from "contexts/DraftProvider";
 import { BasketballDraftSettings, FootballDraftSettings } from "types/drafts";
 import { formatTime } from "@utils/time";
 import { FootballDraftConfiguration } from "./components/football-draft-configuration/FootballDraftConfiguration";
+import { useNavigate } from "react-router-dom";
 
 export const DraftHeader = () => {
     const { draftSettings, startDraft, timeRemaining, isDraftOver } = useDraftContext();
+    const navigate = useNavigate();
     const getRoundCount = () => {
         if (draftSettings.sport === "football") {
             const footballDraftSettings = draftSettings as FootballDraftSettings;
@@ -38,7 +40,7 @@ export const DraftHeader = () => {
     };
     return (
         <header className={styles.draftheader}>
-            <RiArrowLeftSLine className={styles.arrowicon} />
+            <RiArrowLeftSLine className={styles.arrowicon} onClick={() => navigate(-1)} />
             <div className={styles.title}>
                 <h1>
                     {draftSettings.teamCount}-team {draftSettings.scoringFormat}{" "}
@@ -46,7 +48,7 @@ export const DraftHeader = () => {
                 </h1>
                 <p>
                     {getRoundCount()} Rounds · {draftSettings.pickTimeLimit / 60} Min Per Pick ·{" "}
-                    {draftSettings.sport}
+                    {draftSettings.sport.charAt(0).toUpperCase() + draftSettings.sport.slice(1)}
                 </p>
             </div>
             <div className={styles.status}>

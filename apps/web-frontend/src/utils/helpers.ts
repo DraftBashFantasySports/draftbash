@@ -1,4 +1,22 @@
 
+export const formatInjuryStatus = (injuryStatus: string | undefined) => {
+    if (injuryStatus === "healthy") {
+        return "Healthy"
+    } else if (injuryStatus === "out") {
+        return "OUT";
+    } else if (injuryStatus === "doubful") {
+        return "DOUBT";
+    } else if (injuryStatus === "questionable") {
+        return "DTD";
+    } else if (injuryStatus === "probable") {
+        return "PROB";
+    } else if (injuryStatus === "injured_reserve") {
+        return "IR";
+    } else {
+        return "Healthy";
+    }
+}
+
 export const capitalizeFootballScoringType = (scoringType: string) => {
     if (scoringType === "standard") {
         return "Standard";

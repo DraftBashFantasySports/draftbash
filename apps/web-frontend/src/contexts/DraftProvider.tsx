@@ -28,7 +28,11 @@ type DraftContextType = {
     filteredPlayers: Player[];
     searchName: string;
     selectedPosition: string;
+    selectedPlayerId: number;
+    isPlayerModalOpen: boolean;
     setSearchName: (name: string) => void;
+    setIsPlayerModalOpen: (isOpen: boolean) => void;
+    setSelectedPlayerId: (id: number) => void;
     setSelectedPosition: (position: string) => void;
     setPlayers: (players: Player[]) => void;
     setFilteredPlayers: (players: Player[]) => void;
@@ -60,7 +64,11 @@ const DraftContext = createContext<DraftContextType>({
     filteredPlayers: [],
     searchName: "",
     selectedPosition: "all",
+    selectedPlayerId: 0,
+    isPlayerModalOpen: false,
     setSearchName: () => {},
+    setIsPlayerModalOpen: () => {},
+    setSelectedPlayerId: () => {},
     setSelectedPosition: () => {},
     setFilteredPlayers: () => {},
     setPlayers: () => {},
@@ -82,6 +90,8 @@ interface Props {
 }
 
 export const DraftProvider = ({ children }: Props) => {
+    const [selectedPlayerId, setSelectedPlayerId] = useState<number>(0);
+    const [isPlayerModalOpen, setIsPlayerModalOpen] = useState(false);
     const [menuHeight, setMenuHeight] = useState(1);
     const [selectedPosition, setSelectedPosition] = useState("all");
     const [searchName, setSearchName] = useState("");
@@ -241,6 +251,10 @@ export const DraftProvider = ({ children }: Props) => {
                 setSearchName,
                 selectedPosition,
                 setSelectedPosition,
+                setSelectedPlayerId,
+                setIsPlayerModalOpen,
+                selectedPlayerId,
+                isPlayerModalOpen,
                 currentPick,
                 timeRemaining,
                 isDraftOver,

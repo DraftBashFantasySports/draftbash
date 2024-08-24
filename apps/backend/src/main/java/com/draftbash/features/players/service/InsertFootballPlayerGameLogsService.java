@@ -43,9 +43,27 @@ public class InsertFootballPlayerGameLogsService {
                         news.select(".news-update__timestamp").text(),
                         DateTimeFormatter.ofPattern("MMMM d, yyyy")
                     ).toString();
-
                 String analysis = "";
                 String fantasyOutlook = "";
+                String injuryStatus = "healthy";
+                if (doc.selectFirst(".p-card__injury .is-red") != null) {
+                    String injury = doc.selectFirst(".p-card__injury .is-red").text().toLowerCase();
+                    if (injury.equals("out")) {
+                        injuryStatus = "out";
+                    } else if (injury.equals("questionable")) {
+                        injuryStatus = "questionable";
+                    } else if (injury.equals("doubtful")) {
+                        injuryStatus = "doubtful";
+                    } else if (injury.equals("suspended")) {
+                        injuryStatus = "suspended";
+                    } else if (injury.equals("pup-p")) {
+                        injuryStatus = "injured_reserve";
+                    } else if (injury.equals("ir")) {
+                        injuryStatus = "injured_reserve";
+                    } else if (injury.equals("probable")) {
+                        injuryStatus = "probable";
+                    }
+                }
                 if (doc.selectFirst(".p-card__outlook-text") != null) {
                     StringBuilder extractedFantasyOutlookText = new StringBuilder();
                     StringBuilder extractedAnalysisText = new StringBuilder();
@@ -70,10 +88,16 @@ public class InsertFootballPlayerGameLogsService {
                         fantasyOutlook,
                         URL,
                         DATE));
+                playerRepository.updatePlayerInjury(player.id(), injuryStatus);
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            break;
         }
     }
 }

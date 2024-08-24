@@ -9,6 +9,7 @@ export type Player = {
     injuryStatus: string;
     headshotUrl: string;
     jerseyNumber: number;
+    yearsExperience: number;
 };
 
 export type SkillPlayerProjection = {
@@ -64,6 +65,20 @@ export type FootballTeam = {
     currentWinStreak: number;
     logoUrl: string;
     conference: string;
+}
+
+export type PlayerNews = {
+    headline: string,
+    summary: string,
+    analysis: string,
+    fantasyOutlook: string,
+    url: string,
+    date: string
+}
+
+export type FootballPlayerData = {
+    player: FootballPlayer;
+    news: PlayerNews;
 }
 
 export type FootballPlayer = Player & {

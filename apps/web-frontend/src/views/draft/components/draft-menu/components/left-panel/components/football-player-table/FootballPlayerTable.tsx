@@ -1,7 +1,7 @@
 import styles from "./FootballPlayerTable.module.css";
 import { useDraftContext } from "contexts/DraftProvider";
 import { FootballPlayer } from "types/players";
-import { getFootballPlayerPosition } from "@utils/helpers";
+import { formatInjuryStatus, getFootballPlayerPosition } from "@utils/helpers";
 import { FootballDraftSettings } from "types/drafts";
 
 type Props = {
@@ -9,8 +9,16 @@ type Props = {
 };
 
 export const FootballPlayerTable = (props: Props) => {
-    const { draftSettings, pickPlayer, currentPick, draftUser, enqueuePlayer, draftId } =
-        useDraftContext();
+    const {
+        draftSettings,
+        pickPlayer,
+        currentPick,
+        draftUser,
+        enqueuePlayer,
+        draftId,
+        setIsPlayerModalOpen,
+        setSelectedPlayerId,
+    } = useDraftContext();
 
     const getCurrentQueueRank = (): number => {
         if (draftUser?.playerQueue) {
@@ -55,6 +63,15 @@ export const FootballPlayerTable = (props: Props) => {
             return 0;
         }
     };
+    const getInjuryStatusStyle = (status: string | undefined) => {
+        if (status === "healthy" || status == null) {
+            return styles.healthy;
+        } else if (status === "questionable") {
+            return styles.questionable;
+        } else {
+            return styles.out;
+        }
+    };
     const getPositionStyles = (player: FootballPlayer) => {
         if (player.isQuarterback) {
             return styles.quarterback;
@@ -75,7 +92,6 @@ export const FootballPlayerTable = (props: Props) => {
             return styles.defense;
         }
     };
-
     return (
         <table className={styles.footballplayertable}>
             <thead>
@@ -113,44 +129,53 @@ export const FootballPlayerTable = (props: Props) => {
             </thead>
             <tbody>
                 {props.players.map((player, index) => (
-                    <tr key={index}>
+                    <tr
+                        key={index}
+                        onClick={() => {
+                            setIsPlayerModalOpen(true);
+                            setSelectedPlayerId(player.id);
+                        }}
+                    >
                         <td>
                             {draftUser?.teamNumber === currentPick?.teamNumber &&
                             draftSettings.isDraftStarted ? (
                                 <button
-                                    type="submit"
+                                    type="button"
                                     className={styles.addbtn}
-                                    onClick={() =>
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         pickPlayer({
                                             player: player,
                                             teamNumber: currentPick?.teamNumber ?? 0,
                                             pickNumber: currentPick?.pickNumber ?? 0,
-                                        })
-                                    }
+                                        });
+                                    }}
                                 >
                                     ADD
                                 </button>
                             ) : (
                                 <button
-                                    type="submit"
+                                    type="button"
                                     className={styles.queuebtn}
-                                    onClick={() =>
+                                    onClick={(e) => {
+                                        e.stopPropagation();
                                         enqueuePlayer(
                                             draftUser?.userId ?? 0,
                                             draftId,
                                             player.id,
                                             getCurrentQueueRank(),
-                                        )
-                                    }
+                                        );
+                                    }}
                                 >
                                     QUEUE
                                 </button>
                             )}
-                            {getRanking(player as FootballPlayer)}
+                            <p className={styles.ranking}>{getRanking(player as FootballPlayer)}</p>
                         </td>
                         <td>
                             <p className={styles.playername}>
-                                {player.firstName} {player.lastName}
+                                {player.firstName} {player.lastName}{" "}
+                                {player.yearsExperience === 0 && <b className={styles.rookie}>R</b>}
                             </p>
                             <p
                                 className={`${styles.position} ${getPositionStyles(player as FootballPlayer)}`}
@@ -167,9 +192,13 @@ export const FootballPlayerTable = (props: Props) => {
                             <p className={styles.team}>
                                 {(player as FootballPlayer).team.teamAbbreviation}
                             </p>
-                            <p className={styles.injurystatus}>
-                                {(player as FootballPlayer).injuryStatus?.toUpperCase()}
-                            </p>
+                            {player.injuryStatus && player.injuryStatus != "healthy" && (
+                                <p
+                                    className={`${styles.injurystatus} ${getInjuryStatusStyle(player.injuryStatus)}`}
+                                >
+                                    {formatInjuryStatus((player as FootballPlayer).injuryStatus)}
+                                </p>
+                            )}
                         </td>
                         <td>{(player as FootballPlayer).team.byeWeek}</td>
                         <td>{getFantasyPoints(player as FootballPlayer)}</td>

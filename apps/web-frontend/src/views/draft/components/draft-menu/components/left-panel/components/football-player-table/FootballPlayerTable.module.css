@@ -82,8 +82,15 @@
 }
 
 .footballplayertable tbody td:first-child {
-    padding-right: 10px;
-    text-align: right;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding-right: 0;
+}
+
+.footballplayertable tbody .ranking {
+    width: 30px;
+    text-align: left;
 }
 
 .footballplayertable tbody td .playername {
@@ -91,6 +98,12 @@
     top: 3px;
     font-size: var(--font-xsmall);
     font-weight: 600;
+}
+
+.footballplayertable tbody td .playername .rookie {
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--pink);
 }
 
 .footballplayertable tbody td .position {
@@ -113,12 +126,15 @@
     left: 70px;
     font-size: var(--font-xxsmall);
     font-weight: 500;
-    color: red
+    color: red;
+}
+
+.footballplayertable tbody td .injurystatus.questionable {
+    color: orange;
 }
 
 .footballplayertable tbody td button {
-    position: absolute;
-    left: 10px;
+    z-index: 2;
     border: 2px solid var(--grey);
     border-radius: 20px;
     width: 70px;

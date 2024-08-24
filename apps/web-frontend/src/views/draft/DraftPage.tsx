@@ -3,9 +3,10 @@ import { DraftHeader } from "./components/draft-header/DraftHeader";
 import { DraftBoard } from "./components/draft-board/DraftBoard";
 import { DraftMenu } from "./components/draft-menu/DraftMenu";
 import { DraftProvider, useDraftContext } from "contexts/DraftProvider";
+import { FootballPlayerCard } from "@components/football-player-card/FootballPlayerCard";
 
 const DraftPageContent = () => {
-    const { menuHeight } = useDraftContext();
+    const { isPlayerModalOpen, setIsPlayerModalOpen, selectedPlayerId, menuHeight } = useDraftContext();
 
     const getHeightLevel = () => {
         if (menuHeight === 0) {
@@ -19,6 +20,11 @@ const DraftPageContent = () => {
 
     return (
         <main className={`${styles.draftpage} ${getHeightLevel()}`}>
+            <FootballPlayerCard
+                playerId={selectedPlayerId}
+                isModalOpen={isPlayerModalOpen}
+                setIsModalOpen={setIsPlayerModalOpen}
+            />
             <DraftHeader />
             <div className={styles.body}>
                 <DraftBoard />

@@ -34,7 +34,7 @@
 
 .draftheader .startdraftbtn {
     height: 50px;
-    padding: 0 40px;
+    padding: 11px 40px;
     border-radius: 30px;
     background-color: var(--secondary);
     border: none;

@@ -32,5 +32,7 @@ public interface PlayerDTO {
 
     int weight();
 
+    int yearsExperience();
+
     String injuryStatus();
 }

@@ -2,10 +2,10 @@ import styles from "./PlayerRoster.module.css";
 import { useDraftContext } from "contexts/DraftProvider";
 import { getFootballPlayerPosition } from "@utils/helpers";
 import { useState } from "react";
-import { FootballPlayer } from "types/players";
+import { FootballPlayer, Player } from "types/players";
 
 export const FootballPlayerRoster = () => {
-    const { draftUsers, draftUser, fantasyTeams } = useDraftContext();
+    const { draftUsers, draftUser, fantasyTeams, setIsPlayerModalOpen, setSelectedPlayerId } = useDraftContext();
     const [selectedTeam, setSelectedTeam] = useState(fantasyTeams[draftUser?.teamNumber || 1]);
     const [selectedTeamNumber, setSelectedTeamNumber] = useState(draftUser?.teamNumber || 1);
     const getTeamName = (teamNumber: number) => {
@@ -14,6 +14,12 @@ export const FootballPlayerRoster = () => {
             return username;
         } else {
             return `Team ${teamNumber}`;
+        }
+    };
+    const viewPlayer = (player: Player | null) => {
+        if (player) {
+            setIsPlayerModalOpen(true);
+            setSelectedPlayerId(player.id);
         }
     };
     return (
@@ -33,7 +39,9 @@ export const FootballPlayerRoster = () => {
             </select>
             <ul>
                 {selectedTeam.playerSpots.quarterback.map((player, index) => (
-                    <li key={index} className={styles.quarterback}>
+                    <li key={index} className={styles.quarterback}
+                        onClick={() => viewPlayer(player)}
+                    >
                         <label>QB</label>
                         {player ? (
                             <>

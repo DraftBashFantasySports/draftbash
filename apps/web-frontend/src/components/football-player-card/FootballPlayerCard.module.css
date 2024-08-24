@@ -1,0 +1,270 @@
+.modal {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(255 255 255 / 33%);
+    border: none;
+}
+
+.modal .playerbio {
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 800px;
+    min-height: 500px;
+    background-color: var(--grey4);
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.modal header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 35px;
+    width: 500px;
+    background-color: var(--grey3);
+    border-radius: 10px 10px 0 0;
+}
+
+.modal header .exit {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    color: var(--grey);
+    cursor: pointer;
+    padding: 3px;
+}
+
+.modal header .exit:hover {
+    background-color: rgba(255 255 255 / 33%);
+}
+
+.modal header p {
+    font-size: var(--font-small);
+    font-weight: 600;
+}
+
+.modal header p.runningback {
+    color: var(--green);
+}
+
+.modal header p.widereceiver {
+    color: var(--blue);
+}
+
+.modal header p.tightend {
+    color: var(--yellow);
+}
+
+.modal header p.quarterback {
+    color: var(--red);
+}
+
+.modal header p.kicker {
+    color: var(--pink);
+}
+
+.modal header p.defense {
+    color: var(--orange);
+}
+
+.modal .content {
+    display: flex;
+}
+
+.modal .info {
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+}
+
+.modal .profile {
+    display: flex;
+}
+
+.modal .details {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 10px;
+    background-color: var(--grey);
+    border: 1px solid black;
+    border-right: none;
+}
+
+
+.modal .details h3 {
+    font-size: var(--font-medium);
+    font-weight: 700;
+    color: var(--black1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.modal .details p {
+    margin-top: -5px;
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--grey3);
+}
+
+.modal .playerbio .bio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 40px;
+    background-color: var(--grey3);
+    padding: 0 15px;
+}
+
+.modal .playerbio .bio li {
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+    color: var(--grey);
+}
+
+.modal .playerbio .bio li b {
+    font-size: var(--font-xsmall);
+    font-weight: 700;
+    color: var(--white);
+}
+
+.modal .info .playerimage {
+    z-index: 2;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-color: transparent;
+}
+
+.modal .playerbio .teamimage {
+    height: 100px;
+    width: 100px;
+    background-color: var(--grey3);
+}
+
+.modal .playerbio .fantasyoutlook {
+    width: 280px;
+    height: 180px;
+    background-color: var(--grey);
+    border: 1px solid black;
+    padding: 5px 10px;
+    overflow: auto;
+}
+
+.modal .playerbio .fantasyoutlook h3 {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--black1);
+}
+
+.modal .playerbio .fantasyoutlook p {
+    font-size: var(--font-xxsmall);
+    font-weight: 500;
+    color: var(--grey3);
+}
+
+.modal .playerbio .injurystatus {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px;
+    min-height: 40px;
+}
+
+.modal .playerbio .injurystatus p {
+    height: 100%;
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: var(--white);
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+}
+
+.modal .playerbio .injurystatus.healthy {
+    background-color: rgba(0 255 0 / 20%);
+    border: 1px solid var(--green);
+}
+
+.modal .playerbio .injurystatus.healthy p {
+    background-color: var(--green);
+}
+
+.modal .playerbio .injurystatus.questionable {
+    background-color: rgba(255 150 0 / 20%);
+    border: 1px solid var(--orange);
+}
+
+.modal .playerbio .injurystatus.questionable p {
+    background-color: var(--orange);
+}
+
+.modal .playerbio .injurystatus.out {
+    background-color: rgba(255 0 0 / 20%);
+    border: 1px solid var(--red);
+}
+
+.modal .playerbio .injurystatus.out p {
+    background-color: var(--red);
+}
+
+.modal .news {
+    height: 265px;
+    background-color: var(--grey3);
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+}
+
+.modal .news article {
+    height: 100%;
+    border: 1px solid black;
+    background-color: var(--grey);
+    padding: 15px 20px;
+    overflow: auto;
+}
+
+.modal .news article h3 {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--black1);
+}
+
+.modal .news article h4 {
+    margin-top: 10px;
+    font-size: var(--font-xsmall);
+    font-weight: 700;
+    color: var(--black1);
+}
+
+.modal .news article .date {
+    font-size: var(--font-xsmall);
+    font-weight: 400;
+    color: var(--grey3);
+}
+
+.modal .news article p {
+    font-size: var(--font-xsmall);
+    font-weight: 500;
+    color: var(--grey3);
+}
+
+.modal .news article a {
+    font-size: var(--font-xsmall);
+    font-weight: 600;
+    color: var(--blue2);
+}

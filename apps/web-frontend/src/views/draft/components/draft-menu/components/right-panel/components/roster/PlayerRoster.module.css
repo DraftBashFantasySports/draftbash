@@ -37,11 +37,17 @@
     font-size: var(--font-xsmall);
     font-weight: 500;
     color: var(--white);
+}
 
+.playerroster ul li:hover .playername {
+    opacity: 0.5;
 }
 
 .playerroster ul li .playerinfo {
     height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .playerroster ul li .position {
@@ -55,7 +61,7 @@
 .playerroster ul li.widereceiver label, .playerroster ul li.tightend label,
 .playerroster ul li.kicker label, .playerroster ul li.teamdefense label,
 .playerroster ul li.bench label {
-    width: 50px;
+    min-width: 50px;
     padding: 8px 0;
     border-radius: 5px;
     font-size: var(--font-xsmall);

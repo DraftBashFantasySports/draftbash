@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const PickCard = ({ pickNumber }: Props) => {
-    const { draftSettings, draftPicks } = useDraftContext();
+    const { draftSettings, draftPicks, setIsPlayerModalOpen, setSelectedPlayerId } = useDraftContext();
     const getPickNumberOfRound = (pick: number) => {
         const teamCount = draftSettings.teamCount;
         const round = Math.ceil(pick / teamCount);
@@ -32,6 +32,12 @@ export const PickCard = ({ pickNumber }: Props) => {
         return draftPicks[pickIndex - 1];
     }
     const draftPick = getPick();
+    const viewPlayer = () => {
+        if (draftPick.player) {
+            setIsPlayerModalOpen(true);
+            setSelectedPlayerId(draftPick.player.id);
+        }
+    };
     const getPosition = () => {
         if (draftPick.player) {
             const footballPlayer = draftPick.player as FootballPlayer;
@@ -72,6 +78,7 @@ export const PickCard = ({ pickNumber }: Props) => {
         <div
             key={draftPick.pickNumber}
             className={`${styles.card} ${getPosition()} ${draftPick.player ? styles.drafted : ""}`}
+            onClick={viewPlayer}
         >
             {draftPick.player && (
                 <>
