@@ -7,7 +7,7 @@ import { formatInjuryStatus } from "@utils/helpers";
 type Props = { playerId: number; isModalOpen: boolean; setIsModalOpen: (isOpen: boolean) => void };
 
 export const FootballPlayerCard = (props: Props) => {
-    const { playerData, isLoading } = useGetFootballPlayer(props.playerId);
+    const { playerData } = useGetFootballPlayer(props.playerId);
     let age = "N/A";
     if (playerData?.player?.age) {
         age = playerData.player.age.toString();
