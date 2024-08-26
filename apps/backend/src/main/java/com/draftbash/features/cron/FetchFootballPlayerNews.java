@@ -29,7 +29,7 @@ public class FetchFootballPlayerNews {
     /**
      * Inserts game logs for football players.
      */
-    @Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 0 12 * * *")
     public void insertGameLogs() {
         System.out.println("Fetching player news...");
         List<FootballPlayerDTO> players = playerRepository.getPlayers();
