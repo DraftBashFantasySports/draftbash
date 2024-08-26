@@ -5,7 +5,8 @@ import { useState } from "react";
 import { FootballPlayer, Player } from "types/players";
 
 export const FootballPlayerRoster = () => {
-    const { draftUsers, draftUser, fantasyTeams, setIsPlayerModalOpen, setSelectedPlayerId } = useDraftContext();
+    const { draftUsers, draftUser, fantasyTeams, setIsPlayerModalOpen, setSelectedPlayerId } =
+        useDraftContext();
     const [selectedTeam, setSelectedTeam] = useState(fantasyTeams[draftUser?.teamNumber || 1]);
     const [selectedTeamNumber, setSelectedTeamNumber] = useState(draftUser?.teamNumber || 1);
     const getTeamName = (teamNumber: number) => {
@@ -17,6 +18,7 @@ export const FootballPlayerRoster = () => {
         }
     };
     const viewPlayer = (player: Player | null) => {
+        console.log(player);
         if (player) {
             setIsPlayerModalOpen(true);
             setSelectedPlayerId(player.id);
@@ -39,7 +41,9 @@ export const FootballPlayerRoster = () => {
             </select>
             <ul>
                 {selectedTeam.playerSpots.quarterback.map((player, index) => (
-                    <li key={index} className={styles.quarterback}
+                    <li
+                        key={index}
+                        className={styles.quarterback}
                         onClick={() => viewPlayer(player)}
                     >
                         <label>QB</label>
@@ -76,7 +80,11 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.runningBack.map((player, index) => (
-                    <li key={index} className={styles.runningback}>
+                    <li
+                        key={index}
+                        className={styles.runningback}
+                        onClick={() => viewPlayer(player)}
+                    >
                         <label>RB</label>
                         {player ? (
                             <>
@@ -111,7 +119,11 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.wideReceiver.map((player, index) => (
-                    <li key={index} className={styles.widereceiver}>
+                    <li
+                        key={index}
+                        className={styles.widereceiver}
+                        onClick={() => viewPlayer(player)}
+                    >
                         <label>WR</label>
                         {player ? (
                             <>
@@ -146,7 +158,7 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.tightEnd.map((player, index) => (
-                    <li key={index} className={styles.tightend}>
+                    <li key={index} className={styles.tightend} onClick={() => viewPlayer(player)}>
                         <label>TE</label>
                         {player ? (
                             <>
@@ -181,7 +193,7 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.flex.map((player, index) => (
-                    <li key={index} className={styles.flex}>
+                    <li key={index} className={styles.flex} onClick={() => viewPlayer(player)}>
                         <label>
                             <p>W</p>
                             <p>R</p>
@@ -220,7 +232,7 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.kicker.map((player, index) => (
-                    <li key={index} className={styles.kicker}>
+                    <li key={index} className={styles.kicker} onClick={() => viewPlayer(player)}>
                         <label>K</label>
                         {player ? (
                             <>
@@ -255,7 +267,11 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.teamDefense.map((player, index) => (
-                    <li key={index} className={styles.teamdefense}>
+                    <li
+                        key={index}
+                        className={styles.teamdefense}
+                        onClick={() => viewPlayer(player)}
+                    >
                         <label>DEF</label>
                         {player ? (
                             <>
@@ -290,7 +306,7 @@ export const FootballPlayerRoster = () => {
                     </li>
                 ))}
                 {selectedTeam.playerSpots.bench.map((player, index) => (
-                    <li key={index} className={styles.bench}>
+                    <li key={index} className={styles.bench} onClick={() => viewPlayer(player)}>
                         <label>BE</label>
                         {player ? (
                             <>
