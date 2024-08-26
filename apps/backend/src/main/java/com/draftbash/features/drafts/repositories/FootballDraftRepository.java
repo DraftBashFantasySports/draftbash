@@ -572,7 +572,7 @@ public class FootballDraftRepository implements IFootballDraftRepository {
             footballDraftSettingsParams.put("draft_id", footballDraft.id());
             db.batchUpdate("""
                 UPDATE draft_pick
-                SET player_id = :player_id, picked_by_team_number = :picked_by_team_number,
+                SET player_id = :player_id, picked_by_team_number = :picked_by_team_number
                 WHERE draft_id = :draft_id AND pick_number = :pick_number;
                 """, draftPickParams.toArray(new MapSqlParameterSource[0]));
         }
