@@ -1,4 +1,4 @@
-![CI Status](https://github.com/DraftBashFantasySports/draftbash/actions/workflows/ci.yml/badge.svg) ![CD Status](https://github.com/DraftBashFantasySports/draftbash/actions/workflows/cd.yml/badge.svg)
+![CI Status](https://github.com/DraftBashFantasySports/draftbash/actions/workflows/backend_ci.yml/badge.svg) ![CD Status](https://github.com/DraftBashFantasySports/draftbash/actions/workflows/backend_cd.yml/badge.svg)
 # DraftBash Fantasy Sports App
 
 A fantasy sports app for managing football and basketball teams.
