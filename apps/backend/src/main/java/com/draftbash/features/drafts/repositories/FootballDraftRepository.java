@@ -84,31 +84,12 @@ public class FootballDraftRepository implements IFootballDraftRepository {
         params.put("player_id", playerId);
         params.put("queued_by_user_id", enqueuedByUserId);
         params.put("rank", rank);
+        
         db.update("""
             INSERT INTO player_queue (draft_id, player_id, queued_by_user_id, rank)
             VALUES (:draft_id, :player_id, :queued_by_user_id, :rank)
             ON CONFLICT (draft_id, player_id, queued_by_user_id) DO UPDATE
-            SET rank = :rank
-            """, params);
-        db.update("""
-            WITH ordered_ranks AS (
-                SELECT 
-                    draft_id,
-                    player_id,
-                    queued_by_user_id,
-                    rank,
-                    ROW_NUMBER() OVER 
-                        (PARTITION BY draft_id, queued_by_user_id ORDER BY rank) AS new_rank
-                FROM player_queue
-                WHERE draft_id = :draft_id
-                ORDER BY rank ASC
-            )
-            UPDATE player_queue
-            SET rank = ordered_ranks.new_rank
-            FROM ordered_ranks
-            WHERE player_queue.draft_id = ordered_ranks.draft_id
-            AND player_queue.player_id = ordered_ranks.player_id
-            AND player_queue.queued_by_user_id = ordered_ranks.queued_by_user_id;
+            SET rank = EXCLUDED.rank
             """, params);
     }
 
