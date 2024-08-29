@@ -1,25 +1,22 @@
-import styles from "../AuthenticationPage.module.css";
+import styles from "../../AuthenticationPage.module.css";
 import { Link } from "react-router-dom";
 import { TextInput } from "@components/text-input/TextInput";
-import { useCreateUser } from "@hooks/users/useCreateUser";
+import { useSignInUser } from "@hooks/users/useSignInUser";
 import { useState } from "react";
 
-export const SignUpPage = () => {
-    const {
-        createUser,
-        validateEmail,
-        validateUsername,
-        validatePassword,
-        usernameError,
-        emailError,
-        passwordError,
-    } = useCreateUser();
+export const SignInPage = () => {
+    const { signInUser, isLoading, error } = useSignInUser();
+    const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [username, setUsername] = useState<string>("");
+    const setName = (name: string) => {
+        setUsername(name);
+        setEmail(name);
+    };
     const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        createUser({ username: username, email: email, password: password });
+        console.log(isLoading, error);
+        signInUser({ username: username, email: email, password: password });
     };
     return (
         <main>
@@ -32,7 +29,11 @@ export const SignUpPage = () => {
                     />
                     DraftBash
                 </h2>
-                <img src="images/confetti.png" alt="Confetti" className={`${styles.confetti}`} />
+                <img
+                    src="images/confetti.png"
+                    alt="Confetti"
+                    className={`${styles.confetti}`}
+                />
                 <p className={`${styles.slogan}`}>
                     Make fantasy sport dreams come true with{" "}
                     <b>
@@ -50,27 +51,23 @@ export const SignUpPage = () => {
             </section>
             <section className={`${styles.rightcolumn}`}>
                 <header>
-                    <h1>Sign up</h1>
-                    <Link to="/sign-in">Sign in</Link>
+                    <h1>Sign in</h1>
+                    <Link to="/sign-up">Sign up</Link>
                 </header>
                 <p className={`${styles.instructions}`}>Sign in with your username or email</p>
                 <form onSubmit={handleOnSubmit}>
                     <TextInput
-                        label="Username"
-                        placeholder="Username"
-                        handleOnChange={(text: string) => {setUsername(text); validateUsername(text);}}
+                        label="Username or email"
+                        placeholder="Username or email"
+                        handleOnChange={setName}
                     />
-                    <p className={styles.error}>{usernameError}</p>
-                    <TextInput label="Email" placeholder="Email" handleOnChange={(text: string) => { setEmail(text); validateEmail(text); }} />
-                    <p className={styles.error}>{emailError}</p>
                     <TextInput
                         label="Password"
                         placeholder="Password"
                         type="password"
-                        handleOnChange={(text: string) => { setPassword(text); validatePassword(text); }}
+                        handleOnChange={setPassword}
                     />
-                    <p className={styles.error}>{passwordError}</p>
-                    <button type="submit">Sign up</button>
+                    <button type="submit">Sign in</button>
                 </form>
             </section>
         </main>

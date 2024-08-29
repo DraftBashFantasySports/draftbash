@@ -1,5 +1,5 @@
 import styles from "./MockDraftsPage.module.css";
-import { DashboardLayout } from "../DashboardLayout";
+import { DashboardLayout } from "views/dashboard/DashboardLayout";
 import { MockDraftsToggle } from "./components/mock-drafts-toggle/MockDraftsToggle";
 import { useState } from "react";
 import { MockDraftItem } from "./components/mock-draft-item/MockDraftItem";

@@ -5,7 +5,7 @@ import { getFootballPlayerPosition } from "@utils/helpers";
 import { FootballPlayer } from "types/players";
 
 export const FootballPlayerQueue = () => {
-    const { draftUser, enqueuePlayer, dequeuePlayer } = useDraftContext();
+    const { draftUser, dequeuePlayer, swapQueuedPlayers } = useDraftContext();
     const [playerQueue, setPlayerQueue] = useState(draftUser?.playerQueue || []);
     const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
     const [startIndex, setStartIndex] = useState<number | null>(null);
@@ -33,17 +33,17 @@ export const FootballPlayerQueue = () => {
         const endIndex = draggingIndex;
         setDraggingIndex(null);
         if (startIndex !== null && endIndex !== null && draftUser) {
-            enqueuePlayer(
+            swapQueuedPlayers(
                 draftUser?.userId ?? 0,
                 draftUser?.draftId ?? 0,
-                draftUser?.playerQueue[startIndex].player.id,
-                endIndex + 1,
-            );
-            enqueuePlayer(
-                draftUser?.userId ?? 0,
-                draftUser?.draftId ?? 0,
-                draftUser?.playerQueue[endIndex].player.id,
-                startIndex + 1,
+                {
+                    playerId: draftUser?.playerQueue[startIndex].player.id,
+                    rank: endIndex + 1,
+                },
+                {
+                    playerId: draftUser?.playerQueue[endIndex].player.id,
+                    rank: startIndex + 1,
+                },
             );
         }
     };

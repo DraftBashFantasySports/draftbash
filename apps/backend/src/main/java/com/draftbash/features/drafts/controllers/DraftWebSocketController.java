@@ -102,6 +102,30 @@ public class DraftWebSocketController {
         }
     }
 
+    private record QueuedPlayersSwapDTO(int draftId, int userId, EnqueuedPlayerDTO firstPlayer, EnqueuedPlayerDTO secondPlayer) {}
+    @MessageMapping("/drafts.swap-queued-players")
+    public void swapQueuedPlayers(@Payload QueuedPlayersSwapDTO queuedPlayers) {
+        int draftId = queuedPlayers.draftId();
+        int userId = queuedPlayers.userId();
+        DraftRoomService draftRoom = draftRooms.get(draftId);
+        Map<String, Object> response = new HashMap<>();
+
+        if (draftRoom != null) {
+            draftRoom.enqueuePlayer(
+                userId, 
+                queuedPlayers.firstPlayer().playerId(), 
+                queuedPlayers.firstPlayer().rank()
+            );
+            draftRoom.enqueuePlayer(
+                userId, 
+                queuedPlayers.secondPlayer().playerId(), 
+                queuedPlayers.secondPlayer().rank()
+            );
+            response.put("draftUsers", draftRoom.getDraftUsers());
+            messagingTemplate.convertAndSend("/topic/drafts/" + draftId, response);
+        }
+    }
+
     private record EnqueuedPlayerDTO(int userId, int playerId, int rank, int draftId) {}
     /**
      * Enqueues a player in a draft room.
@@ -278,32 +302,37 @@ public class DraftWebSocketController {
                 boolean isAutoDrafting = true;
                 boolean isAddingQueuedPlayer = false;
                 for (DraftUserDTO user : draftRoom.getDraftUsers()) {
-                    if (user.teamNumber() == draftPick.teamNumber() 
-                        && user.playerQueue().size() > 0) {
+                    if (user.teamNumber() == draftPick.teamNumber()) {
                         try {
                             Thread.sleep(1000);
-                            draftRoom.pickPlayer(new DraftPickDTO(
-                                draftPick.pickNumber(),
-                                draftPick.teamNumber(),
-                                user.playerQueue().get(0).player()));
-                            draftRoom.dequeuePlayer(
-                                user.userId(), user.playerQueue().get(0).player().id());
-                            isAddingQueuedPlayer = true;
-                            
-                            response.put("draftUsers", draftRoom.getDraftUsers());
-                            response.put("draftPicks", draftRoom.getDraftPicks());
-                            response.put("players", draftRoom.getPlayers());
-                            response.put("fantasyTeams", draftRoom.getFantasyTeams());
-                            response.put("timeRemaining", 
-                                draftRoom.getDraftSettings().pickTimeLimit());
-                            messagingTemplate.convertAndSend("/topic/drafts/" + draftId, response);
-                            break;
                         } catch (Exception e) {
-                            break;
+                            System.out.println(e.getMessage());
                         }
-                    } else if (user.teamNumber() == draftPick.teamNumber() 
-                        && !user.isAutodrafting()) {
-                        isAutoDrafting = false;
+                        for (int i = 0; i < user.playerQueue().size(); i++) {
+                            try {
+                                draftRoom.dequeuePlayer(
+                                    user.userId(), user.playerQueue().get(i).player().id());
+                                draftRoom.pickPlayer(new DraftPickDTO(
+                                    draftPick.pickNumber(),
+                                    draftPick.teamNumber(),
+                                    user.playerQueue().get(0).player()));
+                                                        response.put("draftUsers", draftRoom.getDraftUsers());
+                                isAddingQueuedPlayer = true;
+                                break;
+                            } catch (Exception e) {
+                                continue;
+                            }
+                        }
+                        if (!user.isAutodrafting()) {
+                            isAutoDrafting = false;
+                        }
+                        response.put("draftUsers", draftRoom.getDraftUsers());
+                        response.put("draftPicks", draftRoom.getDraftPicks());
+                        response.put("players", draftRoom.getPlayers());
+                        response.put("fantasyTeams", draftRoom.getFantasyTeams());
+                        response.put("timeRemaining", 
+                            draftRoom.getDraftSettings().pickTimeLimit());
+                        messagingTemplate.convertAndSend("/topic/drafts/" + draftId, response);
                         break;
                     }
                 }

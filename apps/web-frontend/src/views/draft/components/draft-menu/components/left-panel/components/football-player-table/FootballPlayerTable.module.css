@@ -134,7 +134,6 @@
 }
 
 .footballplayertable tbody td button {
-    z-index: 2;
     border: 2px solid var(--grey);
     border-radius: 20px;
     width: 70px;

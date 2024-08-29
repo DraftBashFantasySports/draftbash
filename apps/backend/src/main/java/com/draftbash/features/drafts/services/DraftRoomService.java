@@ -68,19 +68,8 @@ public class DraftRoomService {
      * This method adds a player to the draft room.
      */
     public void enqueuePlayer(int userId, int playerId, int rank) {
-        try {
-            for (DraftUserDTO user : draftUsers) {
-                if (user.userId() == userId) {
-                    fantasyTeams.get(user.teamNumber())
-                        .addPlayer(players.stream()
-                        .filter(p -> p.id() == playerId).findFirst().get());
-                }
-            }
-            this.draftRepository.enqueuePlayer(draftId, userId, playerId, rank);
-            this.draftUsers = draftRepository.getDraftUsers(draftId);
-        } catch (Exception e) {
-            this.draftUsers = draftRepository.getDraftUsers(draftId);
-        }
+        this.draftRepository.enqueuePlayer(draftId, userId, playerId, rank);
+        this.draftUsers = draftRepository.getDraftUsers(draftId);
     }
 
     /**

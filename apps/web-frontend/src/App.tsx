@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { SignInPage } from "views/authentication/sign-in/SignInPage";
-import { SignUpPage } from "views/authentication/sign-up/SignUpPage";
+import { SignInPage } from "views/authentication/components/sign-in/SignInPage";
+import { SignUpPage } from "views/authentication/components/sign-up/SignUpPage";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalProvider } from "contexts/GlobalProvider";
 import { ProtectedRoute } from "@components/protected-route/ProtectedRoute";
-import { MessagesPage } from "views/dashboard/messages/MessagesPage";
-import { MockDraftsPage } from "views/dashboard/mock-drafts/MockDraftsPage";
+import { MessagesPage } from "views/dashboard/components/messages/MessagesPage";
+import { MockDraftsPage } from "views/dashboard/components/mock-drafts/MockDraftsPage";
 import { DraftPage } from "views/draft/DraftPage";
 
 export const App = () => {

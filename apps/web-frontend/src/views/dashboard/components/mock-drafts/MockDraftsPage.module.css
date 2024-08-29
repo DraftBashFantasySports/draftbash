@@ -19,7 +19,9 @@
 }
 
 .leftpanel ul {
+    max-height: 65vh;
     margin-top: 20px;
+    overflow: auto;
 }
 
 .leftpanel ul li {

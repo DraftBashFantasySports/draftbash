@@ -57,6 +57,7 @@ export type DraftUser = {
     username: string;
     isAutodrafting: boolean;
     playerQueue: QueuedPlayer[];
+    isAdmin: boolean;
 };
 
 export type DraftPick = {

@@ -77,7 +77,6 @@ public class FootballDraftRepository implements IFootballDraftRepository {
     }
 
     @Override
-    @Transactional
     public void enqueuePlayer(int draftId, int enqueuedByUserId, int playerId, int rank) {
         Map<String, Object> params = new HashMap<>();
         params.put("draft_id", draftId);

@@ -19,7 +19,7 @@ export class TokenStorage {
         }
     }
 
-    public static deleteToken(): void {
+    public static removeToken(): void {
         try {
             localStorage.removeItem(this.TOKEN_KEY);
         } catch (error) {

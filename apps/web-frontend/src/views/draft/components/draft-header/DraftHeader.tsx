@@ -8,7 +8,7 @@ import { FootballDraftConfiguration } from "./components/football-draft-configur
 import { useNavigate } from "react-router-dom";
 
 export const DraftHeader = () => {
-    const { draftSettings, startDraft, timeRemaining, isDraftOver } = useDraftContext();
+    const { draftSettings, startDraft, timeRemaining, isDraftOver, draftUser } = useDraftContext();
     const navigate = useNavigate();
     const getRoundCount = () => {
         if (draftSettings.sport === "football") {
@@ -64,7 +64,9 @@ export const DraftHeader = () => {
             </div>
             <div className={styles.settings}>
                 <Invites />
-                <FootballDraftConfiguration />
+                {draftUser?.isAdmin && 
+                    <FootballDraftConfiguration />
+                }
             </div>
         </header>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar } from '@components/nav-bar/NavBar';
+import { NavBar } from 'views/dashboard/components/nav-bar/NavBar';
 import styles from './DashboardLayout.module.css';
 
 interface LayoutProps {

@@ -43,6 +43,12 @@ type DraftContextType = {
     toggleAutoDraft: (userId: number, isAutodrafting: boolean) => void;
     enqueuePlayer: (userId: number, draftId: number, playerId: number, rank: number) => void;
     dequeuePlayer: (userId: number, draftId: number, playerId: number) => void;
+    swapQueuedPlayers: (
+        userId: number,
+        draftId: number,
+        firstPlayer: { playerId: number; rank: number },
+        secondPlayer: { playerId: number; rank: number },
+    ) => void;
     updateDraftSettings: (draft: Draft) => void;
     sendMessage: (message: DraftMessage) => void;
     sendDraftInvite: (fromUserId: number, toUserId: number, message: string) => void;
@@ -79,10 +85,12 @@ const DraftContext = createContext<DraftContextType>({
     toggleAutoDraft: () => {},
     enqueuePlayer: () => {},
     dequeuePlayer: () => {},
+    swapQueuedPlayers: () => {},
     updateDraftSettings: () => {},
     sendMessage: () => {},
     sendDraftInvite: () => {},
 });
+
 export const useDraftContext = () => useContext(DraftContext);
 
 interface Props {
@@ -190,8 +198,18 @@ export const DraftProvider = ({ children }: Props) => {
     const toggleAutoDraft = (userId: number, isAutodrafting: boolean) => {
         draftWebSocket?.toggleAutoDraft(userId, draftId, isAutodrafting);
     };
+
     const enqueuePlayer = (userId: number, draftId: number, playerId: number, rank: number) => {
         draftWebSocket?.enqueuePlayer(userId, draftId, playerId, rank);
+    };
+
+    const swapQueuedPlayers = (
+        userId: number,
+        draftId: number,
+        firstPlayer: { playerId: number; rank: number },
+        secondPlayer: { playerId: number; rank: number },
+    ) => {
+        draftWebSocket?.swapQueuedPlayers(userId, draftId, firstPlayer, secondPlayer)
     };
 
     const dequeuePlayer = (userId: number, draftId: number, playerId: number) => {
@@ -269,6 +287,7 @@ export const DraftProvider = ({ children }: Props) => {
                 toggleAutoDraft,
                 enqueuePlayer,
                 dequeuePlayer,
+                swapQueuedPlayers,
                 updateDraftSettings,
                 sendMessage,
                 sendDraftInvite,

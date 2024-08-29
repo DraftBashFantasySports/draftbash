@@ -1,4 +1,11 @@
-import { Draft, DraftMessage, DraftPick, DraftSettings, DraftUser, FantasyTeam } from "types/drafts";
+import {
+    Draft,
+    DraftMessage,
+    DraftPick,
+    DraftSettings,
+    DraftUser,
+    FantasyTeam,
+} from "types/drafts";
 import { WebSocketClient } from "../config";
 import { Player } from "types/players";
 
@@ -36,7 +43,7 @@ export class DraftWebSocket {
             draftUsers: DraftUser[],
             timerRemaining: number,
             fantasyTeams: FantasyTeam[],
-            messages: DraftMessage[]
+            messages: DraftMessage[],
         ) => void,
     ) {
         this.webSocketClient = new WebSocketClient();
@@ -71,7 +78,7 @@ export class DraftWebSocket {
                     this.draftUsers,
                     this.timeRemaining,
                     this.fantasyTeams,
-                    this.messages
+                    this.messages,
                 );
             });
             this.webSocketClient.send(
@@ -108,6 +115,24 @@ export class DraftWebSocket {
 
     public updateDraftSettings(draft: Draft): void {
         this.webSocketClient.send("/app/drafts.update-draft-settings", {}, JSON.stringify(draft));
+    }
+
+    public swapQueuedPlayers(
+        userId: number,
+        draftId: number,
+        firstPlayer: { playerId: number; rank: number },
+        secondPlayer: { playerId: number; rank: number },
+    ): void {
+        this.webSocketClient.send(
+            "/app/drafts.swap-queued-players",
+            {},
+            JSON.stringify({
+                userId: userId,
+                draftId: draftId,
+                firstPlayer: firstPlayer,
+                secondPlayer: secondPlayer,
+            }),
+        );
     }
 
     public enqueuePlayer(userId: number, draftId: number, playerId: number, rank: number): void {

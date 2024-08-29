@@ -33,6 +33,9 @@
 }
 
 .draftheader .startdraftbtn {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 105px);
     height: 50px;
     padding: 11px 40px;
     border-radius: 30px;

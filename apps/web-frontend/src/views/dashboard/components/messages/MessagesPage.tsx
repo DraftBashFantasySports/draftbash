@@ -1,5 +1,5 @@
 import styles from "./MessagesPage.module.css";
-import { DashboardLayout } from "../DashboardLayout";
+import { DashboardLayout } from "views/dashboard/DashboardLayout";
 import { ChatProvider } from "contexts/ChatProvider";
 import { RightPanel } from "./components/right-panel/RightPanel";
 import { LeftPanel } from "./components/left-panel/LeftPanel";
