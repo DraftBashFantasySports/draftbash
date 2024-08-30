@@ -76,6 +76,9 @@
 }
 
 .draftheader .status p {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 120px);
     width: 240px;
     font-size: var(--font-large);
     color: var(--secondary);

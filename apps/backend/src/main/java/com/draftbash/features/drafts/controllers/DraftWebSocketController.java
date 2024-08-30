@@ -315,7 +315,7 @@ public class DraftWebSocketController {
                                 draftRoom.pickPlayer(new DraftPickDTO(
                                     draftPick.pickNumber(),
                                     draftPick.teamNumber(),
-                                    user.playerQueue().get(0).player()));
+                                    user.playerQueue().get(i).player()));
                                                         response.put("draftUsers", draftRoom.getDraftUsers());
                                 isAddingQueuedPlayer = true;
                                 break;
