@@ -52,15 +52,21 @@ export const DraftHeader = () => {
                 </p>
             </div>
             <div className={styles.status}>
-            {draftSettings.isDraftStarted && !isDraftOver ? (
-                <p>{formatTime(timeRemaining)}</p>
-            ) : isDraftOver ? (
-                <p>DRAFT OVER</p>
-            ) : (
-                <button type="button" className={styles.startdraftbtn} onClick={() => startDraft()}>
-                    START DRAFT
-                </button>
-            )}
+                {draftSettings.isDraftStarted && !isDraftOver ? (
+                    <p>{formatTime(timeRemaining)}</p>
+                ) : isDraftOver ? (
+                    <p>DRAFT OVER</p>
+                ) : (
+                    draftUser?.isAdmin && (
+                        <button
+                            type="button"
+                            className={styles.startdraftbtn}
+                            onClick={() => startDraft()}
+                        >
+                            START DRAFT
+                        </button>
+                    )
+                )}
             </div>
             <div className={styles.settings}>
                 <Invites />
