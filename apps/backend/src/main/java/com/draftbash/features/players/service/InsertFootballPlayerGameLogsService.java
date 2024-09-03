@@ -27,7 +27,7 @@ public class InsertFootballPlayerGameLogsService {
     }
 
     /**
-     * Inserts game logs for football players.
+     * Inserts game logs for football players
      */
     public void insertGameLogs() {
         List<FootballPlayerDTO> players = playerRepository.getPlayers();
