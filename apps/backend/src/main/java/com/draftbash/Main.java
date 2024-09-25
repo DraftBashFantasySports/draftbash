@@ -21,7 +21,7 @@ public class Main {
     /**
      * Main method to start the Spring Boot application.
 
-     * @param args The command line arguments
+     * @param args The command line arguments.
      */
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
