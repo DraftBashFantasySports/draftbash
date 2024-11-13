@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class Main {
 
     /**
-     * Main method to start the Spring Boot application
+     * Main method to start the Spring Boot application.
 
      * @param args The command line arguments.
      */
